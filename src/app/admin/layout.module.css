@@ -1,0 +1,44 @@
+/**
+ * Admin Layout Styles
+ * ===================
+ */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--obsidian-950);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .main {
+    margin-left: 260px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 300px) {
+  .content {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 767px) {
+  .content {
+    padding: 1rem;
+  }
+}

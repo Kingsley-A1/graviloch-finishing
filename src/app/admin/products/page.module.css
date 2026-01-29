@@ -1,0 +1,90 @@
+/**
+ * Admin Products Page Styles
+ * ==========================
+ */
+
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerText {
+  flex: 1;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-family: "Playfair Display", serif;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--obsidian-400);
+}
+
+.content {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--primary-400);
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.badgeMuted {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: var(--obsidian-700);
+  color: var(--obsidian-400);
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/* Galaxy Fold */
+@media (max-width: 300px) {
+  .header {
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
+
+/* Tablet+ */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

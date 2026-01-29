@@ -1,0 +1,29 @@
+{
+  "name": "GRAVILOCH FINISHING",
+  "short_name": "Graviloch",
+  "description": "Italian Painting & Sales - Professional application of Venetian plaster, Marmorino, Travertino, and Metallic finishes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#10b981",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "shopping"],
+  "screenshots": [
+    {
+      "src": "/images/hero/venetian-living-room.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "GRAVILOCH FINISHING - Italian Painting Excellence"
+    }
+  ]
+}

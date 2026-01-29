@@ -1,0 +1,324 @@
+/**
+ * Admin Analytics Page Styles
+ * ===========================
+ */
+
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.headerText {
+  flex: 1;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-family: "Playfair Display", serif;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--obsidian-400);
+}
+
+.periodSelect {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.periodBtn {
+  padding: 0.5rem 1rem;
+  background: var(--obsidian-800);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  color: var(--obsidian-300);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.periodBtn:hover {
+  background: var(--obsidian-700);
+}
+
+.periodBtn.active {
+  background: var(--primary-500);
+  border-color: var(--primary-500);
+  color: var(--white);
+}
+
+/* Overview Grid */
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.overviewCard {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.overviewLabel {
+  font-size: 0.75rem;
+  color: var(--obsidian-400);
+  text-transform: uppercase;
+}
+
+.overviewValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "Playfair Display", serif;
+}
+
+/* Charts Grid */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chartCard,
+.tableCard {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: "Playfair Display", serif;
+}
+
+/* Bar Chart */
+.barChart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 200px;
+  gap: 0.5rem;
+}
+
+.barColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar {
+  width: 100%;
+  max-width: 40px;
+  background: var(--gradient-primary);
+  border-radius: 0.25rem 0.25rem 0 0;
+  position: relative;
+  min-height: 8px;
+  margin-top: auto;
+  transition: height 0.3s ease;
+}
+
+.barValue {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.625rem;
+  color: var(--obsidian-400);
+  white-space: nowrap;
+}
+
+.barLabel {
+  margin-top: 0.5rem;
+  font-size: 0.6875rem;
+  color: var(--obsidian-400);
+}
+
+/* Page Views */
+.pageViews {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pageRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pageInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageName {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pageViewCount {
+  font-size: 0.75rem;
+  color: var(--obsidian-400);
+}
+
+.progressBar {
+  height: 8px;
+  background: var(--obsidian-700);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Table */
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--obsidian-400);
+  text-transform: uppercase;
+}
+
+.table td {
+  font-size: 0.875rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--obsidian-400);
+}
+
+/* Galaxy Fold */
+@media (max-width: 300px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .periodSelect {
+    gap: 0.25rem;
+  }
+
+  .periodBtn {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .overviewGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .overviewCard {
+    padding: 1rem;
+  }
+
+  .overviewLabel {
+    font-size: 0.625rem;
+  }
+
+  .overviewValue {
+    font-size: 1.25rem;
+  }
+
+  .chartCard,
+  .tableCard {
+    padding: 1rem;
+  }
+
+  .chartTitle {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .barChart {
+    height: 150px;
+    gap: 0.25rem;
+  }
+
+  .barValue {
+    font-size: 0.5rem;
+    top: -1.25rem;
+  }
+
+  .barLabel {
+    font-size: 0.5rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.5rem;
+    font-size: 0.6875rem;
+  }
+}
+
+/* Tablet+ */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .overviewGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .chartsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .barChart {
+    height: 250px;
+  }
+}

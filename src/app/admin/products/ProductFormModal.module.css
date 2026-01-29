@@ -1,0 +1,110 @@
+/**
+ * Product Form Modal Styles
+ * =========================
+ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--obsidian-200);
+}
+
+.select {
+  padding: 0.75rem 1rem;
+  background: var(--obsidian-800);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-500);
+}
+
+.fileInput {
+  padding: 0.5rem;
+  background: var(--obsidian-800);
+  border: 1px dashed var(--card-border);
+  border-radius: var(--radius);
+  color: var(--obsidian-300);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.fileInput::file-selector-button {
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  background: var(--primary-500);
+  border: none;
+  border-radius: var(--radius);
+  color: var(--white);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.checkboxField input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-500);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--card-border);
+}
+
+/* Galaxy Fold */
+@media (max-width: 300px) {
+  .form {
+    gap: 0.75rem;
+  }
+
+  .label {
+    font-size: 0.75rem;
+  }
+
+  .select,
+  .fileInput {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .checkboxField {
+    font-size: 0.75rem;
+  }
+
+  .checkboxField input {
+    width: 16px;
+    height: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

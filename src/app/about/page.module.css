@@ -1,0 +1,14 @@
+/**
+ * About Page Styles
+ * =================
+ */
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #1a1a20 0%,
+    #141418 50%,
+    #18181c 100%
+  );
+}

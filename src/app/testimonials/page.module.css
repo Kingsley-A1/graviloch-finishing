@@ -1,0 +1,120 @@
+/**
+ * Testimonials Page Styles
+ * ========================
+ */
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  background: linear-gradient(
+    180deg,
+    #1a1a20 0%,
+    #141418 50%,
+    #18181c 100%
+  );
+}
+
+/* Header Section */
+.header {
+  background: linear-gradient(
+    180deg,
+    rgba(251, 191, 36, 0.12) 0%,
+    transparent 100%
+  );
+  padding: 8rem 1rem 3rem;
+  text-align: center;
+}
+
+.headerContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  color: var(--obsidian-300);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Stats Section */
+.statsSection {
+  padding: 2rem 1rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Content Section */
+.content {
+  padding: 2rem 1rem;
+}
+
+/* Galaxy Fold (Extra Small) */
+@media (max-width: 300px) {
+  .header {
+    padding: 6rem 0.5rem 2rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .statsSection,
+  .content {
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Small Mobile */
+@media (min-width: 301px) and (max-width: 479px) {
+  .header {
+    padding: 7rem 0.75rem 2.5rem;
+  }
+
+  .statsSection,
+  .content {
+    padding: 1.5rem 0.75rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .header {
+    padding: 9rem 2rem 4rem;
+  }
+
+  .statsSection,
+  .content {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .header {
+    padding: 10rem 2rem 5rem;
+  }
+
+  .statsSection {
+    padding: 3rem 2rem;
+  }
+
+  .content {
+    padding: 3rem 2rem;
+  }
+}

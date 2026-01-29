@@ -1,0 +1,99 @@
+/* Shop Page Styles */
+
+.page {
+  min-height: 100vh;
+  padding-top: 5rem;
+  background: linear-gradient(
+    180deg,
+    #1a1a20 0%,
+    #141418 50%,
+    #18181c 100%
+  );
+}
+
+.header {
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 185, 129, 0.12) 0%,
+    transparent 100%
+  );
+}
+
+.headerContent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 0.75rem;
+}
+
+.subtitle {
+  font-size: 1.0625rem;
+  color: var(--obsidian-300);
+  margin: 0;
+}
+
+.content {
+  padding: 2rem 1.5rem 4rem;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .header {
+    padding: 4rem 2rem 2.5rem;
+  }
+
+  .content {
+    padding: 2.5rem 2rem 5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .header {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .content {
+    padding: 1.5rem 1rem 3rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .page {
+    padding-top: 4rem;
+  }
+
+  .header {
+    padding: 1.5rem 0.75rem 1rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .content {
+    padding: 1rem 0.75rem 2rem;
+  }
+}

@@ -1,0 +1,38 @@
+/**
+ * SubmitReviewButton Styles
+ * =========================
+ */
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Galaxy Fold */
+@media (max-width: 300px) {
+  .container {
+    margin-top: 1rem;
+  }
+
+  .container button {
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Small Mobile */
+@media (min-width: 301px) and (max-width: 479px) {
+  .container button {
+    width: 100%;
+  }
+}
+
+/* Tablet and Up */
+@media (min-width: 768px) {
+  .container {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+}

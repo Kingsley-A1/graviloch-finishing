@@ -1,0 +1,73 @@
+/**
+ * AdminHeader Styles
+ * ==================
+ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--obsidian-900);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.spacer {
+  width: 44px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+.user {
+  display: none;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: var(--obsidian-400);
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .user {
+    display: flex;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .spacer {
+    display: none;
+  }
+}

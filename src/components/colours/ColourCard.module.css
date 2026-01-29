@@ -1,0 +1,200 @@
+/**
+ * ColourCard Styles
+ * =================
+ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.swatch {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likeBtn {
+  position: absolute;
+  top: 0.375rem;
+  right: 0.375rem;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.card:hover .likeBtn {
+  opacity: 1;
+}
+
+.likeBtn.liked {
+  opacity: 1;
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.likeBtn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.likeBtn:hover {
+  transform: scale(1.15);
+}
+
+.codeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.25rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .codeOverlay {
+  opacity: 1;
+}
+
+.hexCode {
+  font-size: 0.5625rem;
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.info {
+  padding: 0.5rem;
+}
+
+.name {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.code {
+  font-size: 0.5625rem;
+  color: var(--obsidian-400);
+  font-family: monospace;
+}
+
+.copyBtn {
+  padding: 0.125rem 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.625rem;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.copyBtn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 300px) {
+  .info {
+    padding: 0.375rem;
+  }
+
+  .name {
+    font-size: 0.5625rem;
+  }
+
+  .code {
+    font-size: 0.5rem;
+  }
+
+  .likeBtn {
+    width: 20px;
+    height: 20px;
+  }
+
+  .likeBtn svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    border-radius: 0.75rem;
+  }
+
+  .info {
+    padding: 0.625rem;
+  }
+
+  .name {
+    font-size: 0.75rem;
+  }
+
+  .code {
+    font-size: 0.625rem;
+  }
+
+  .likeBtn {
+    width: 28px;
+    height: 28px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .likeBtn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .name {
+    font-size: 0.8125rem;
+  }
+}

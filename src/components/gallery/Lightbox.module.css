@@ -1,0 +1,299 @@
+/**
+ * Lightbox Styles
+ * ===============
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close Button */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.closeButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Navigation Buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.navButton svg {
+  width: 28px;
+  height: 28px;
+}
+
+.prevButton {
+  left: 1rem;
+}
+
+.nextButton {
+  right: 1rem;
+}
+
+/* Image Container */
+.imageContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 80vh;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--obsidian-800);
+  color: var(--obsidian-500);
+}
+
+.imagePlaceholder svg {
+  width: 80px;
+  height: 80px;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.imageInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gold-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--white);
+  font-family: "Playfair Display", serif;
+}
+
+.counter {
+  font-size: 0.75rem;
+  color: var(--obsidian-400);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.actionButton {
+  height: 44px;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  background: var(--obsidian-800);
+  border: 1px solid var(--card-border);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.actionButton:hover {
+  background: var(--obsidian-700);
+}
+
+.actionButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.actionButton.liked {
+  color: #ef4444;
+}
+
+.inquireButton {
+  flex: 1;
+  background: var(--gradient-primary);
+  border-color: transparent;
+}
+
+.inquireButton:hover {
+  opacity: 0.9;
+}
+
+/* Galaxy Fold (Extra Small) */
+@media (max-width: 300px) {
+  .closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .closeButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navButton svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .prevButton {
+    left: 0.5rem;
+  }
+
+  .nextButton {
+    right: 0.5rem;
+  }
+
+  .imageContainer {
+    padding: 3rem 0.5rem;
+  }
+
+  .bottomBar {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 0.875rem;
+  }
+
+  .category,
+  .counter {
+    font-size: 0.625rem;
+  }
+
+  .actionButton {
+    height: 36px;
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .actionButton svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (min-width: 301px) and (max-width: 479px) {
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .imageContainer {
+    padding: 3.5rem 0.75rem;
+  }
+
+  .bottomBar {
+    padding: 1rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet and Up */
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+  }
+
+  .actions {
+    flex-wrap: nowrap;
+  }
+
+  .inquireButton {
+    flex: unset;
+    padding: 0 1.5rem;
+  }
+}

@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  category    String   // venetian, marmorino, travertino, metallic, etc.
+  imageUrl    String
+  inStock     Boolean  @default(true)
+  views       Int      @default(0)
+  likes       Int      @default(0)
+  contacts    Int      @default(0)
+  shares      Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  title     String
+  category  String   // interior, exterior, office, dining, etc.
+  imageUrl  String
+  likes     Int      @default(0)
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  rating    Int      // 1-5 stars
+  message   String
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Analytics {
+  id        String   @id @default(cuid())
+  event     String   // page_view, product_view, contact_click, like, share, etc.
+  page      String
+  productId String?
+  metadata  String?  // JSON string for extra data
+  userAgent String?
+  ipHash    String?  // Hashed for privacy
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,273 @@
+/* HeroSection Component Styles */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.backgroundWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.backgroundSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.backgroundSlide.activeSlide {
+  opacity: 1;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: var(--obsidian-800);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0.4) 0%,
+    rgba(13, 13, 13, 0.6) 50%,
+    rgba(13, 13, 13, 0.9) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 1.5rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.textContent {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.subtitle {
+  display: block;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.description {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--obsidian-200);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--gradient-primary);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  border-color: var(--primary-500);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+/* Indicators */
+.indicators {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.indicator {
+  width: 2.5rem;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.indicator.active {
+  background: var(--primary-500);
+  width: 3.5rem;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--obsidian-400);
+}
+
+.scrollText {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scrollArrow {
+  display: flex;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .content {
+    padding: 8rem 2rem 4rem;
+  }
+
+  .actions {
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .content {
+    padding: 5rem 1rem 3rem;
+  }
+
+  .textContent {
+    margin-bottom: 2rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    width: 100%;
+  }
+
+  .indicators {
+    gap: 0.5rem;
+  }
+
+  .indicator {
+    width: 1.5rem;
+  }
+
+  .indicator.active {
+    width: 2.5rem;
+  }
+
+  .scrollIndicator {
+    bottom: 1.5rem;
+  }
+}
+
+/* Extra small screens (Galaxy Fold outer) */
+@media (max-width: 320px) {
+  .content {
+    padding: 4.5rem 0.75rem 2.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .indicator {
+    width: 1rem;
+    height: 3px;
+  }
+
+  .indicator.active {
+    width: 1.75rem;
+  }
+
+  .scrollIndicator {
+    bottom: 1rem;
+  }
+
+  .scrollText {
+    font-size: 0.625rem;
+  }
+
+  .scrollArrow svg {
+    width: 12px;
+    height: 12px;
+  }
+}

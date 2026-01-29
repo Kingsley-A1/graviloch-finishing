@@ -1,0 +1,458 @@
+/**
+ * ColourModal Styles
+ * ==================
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border-radius: 1rem;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: var(--obsidian-600);
+  border-radius: 3px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.closeBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  transition: all 0.2s ease;
+}
+
+.navBtn:hover {
+  background: var(--gold-500);
+  color: var(--obsidian-900);
+  border-color: var(--gold-500);
+}
+
+.navBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.prevBtn {
+  left: -48px;
+}
+
+.nextBtn {
+  right: -48px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.colourDisplay {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.colourInfo {
+  text-align: center;
+}
+
+.colourName {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.colourCode {
+  font-size: 0.875rem;
+  font-family: monospace;
+  opacity: 0.8;
+  letter-spacing: 0.1em;
+}
+
+.likeBtn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 2px solid;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.likeBtn:hover {
+  transform: scale(1.1);
+}
+
+.likeBtn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.details {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--obsidian-400);
+}
+
+.codeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.codeItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: var(--obsidian-800);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.codeItem:hover {
+  background: var(--obsidian-700);
+  border-color: var(--gold-500);
+}
+
+.codeLabel {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--obsidian-400);
+}
+
+.codeValue {
+  font-size: 0.875rem;
+  font-family: monospace;
+  color: var(--foreground);
+}
+
+.copiedBadge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.125rem 0.375rem;
+  background: var(--gold-500);
+  color: var(--obsidian-900);
+  font-size: 0.625rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.shadesGrid {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shade {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.shade:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.currentShade {
+  box-shadow: 0 0 0 2px var(--foreground);
+}
+
+.shadeCopied {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.complementary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--obsidian-800);
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.complementary:hover {
+  background: var(--obsidian-700);
+  border-color: var(--gold-500);
+}
+
+.compSwatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.375rem;
+  flex-shrink: 0;
+}
+
+.compCode {
+  font-family: monospace;
+  color: var(--foreground);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.whatsappBtn,
+.emailBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.whatsappBtn {
+  background: #25d366;
+  color: white;
+}
+
+.whatsappBtn:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+}
+
+.emailBtn {
+  background: var(--obsidian-700);
+  color: var(--foreground);
+  border: 1px solid var(--card-border);
+}
+
+.emailBtn:hover {
+  background: var(--gold-500);
+  color: var(--obsidian-900);
+  border-color: var(--gold-500);
+  transform: translateY(-2px);
+}
+
+.whatsappBtn svg,
+.emailBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tip {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.1),
+    rgba(212, 175, 55, 0.05)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 0.5rem;
+}
+
+.tipIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.tip p {
+  font-size: 0.8125rem;
+  color: var(--obsidian-300);
+  line-height: 1.5;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.5rem;
+  }
+
+  .modal {
+    max-height: 95vh;
+    border-radius: 0.75rem;
+  }
+
+  .navBtn {
+    display: none;
+  }
+
+  .colourDisplay {
+    aspect-ratio: 3 / 2;
+    padding: 1.5rem;
+  }
+
+  .colourName {
+    font-size: 1.5rem;
+  }
+
+  .likeBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .likeBtn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .details {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  .codeGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    max-width: 550px;
+    border-radius: 1.25rem;
+  }
+
+  .colourName {
+    font-size: 2rem;
+  }
+
+  .details {
+    padding: 2rem;
+    gap: 1.75rem;
+  }
+}

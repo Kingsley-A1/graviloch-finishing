@@ -1,0 +1,247 @@
+/* ServicesPreview Component Styles */
+
+.section {
+  padding: 5rem 0;
+  background: linear-gradient(
+    180deg,
+    var(--obsidian-950) 0%,
+    var(--obsidian-900) 100%
+  );
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0 0 1rem;
+}
+
+.subtitle {
+  font-size: 1.0625rem;
+  color: var(--obsidian-300);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+/* Card */
+.card {
+  padding: 1.75rem;
+  background: rgba(26, 26, 26, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  background: rgba(26, 26, 26, 0.8);
+  border-color: var(--primary-600);
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.1);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1.25rem;
+  background: var(--gradient-primary);
+  border-radius: 1rem;
+  color: var(--white);
+}
+
+.iconWrapper svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0 0 0.5rem;
+}
+
+.cardDescription {
+  font-size: 0.9375rem;
+  color: var(--obsidian-300);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--obsidian-900);
+  background: var(--gradient-gold);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.25);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(251, 191, 36, 0.35);
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .section {
+    padding: 6rem 0;
+  }
+
+  .container {
+    padding: 0 2.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card {
+    padding: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .iconWrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .iconWrapper svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardDescription {
+    font-size: 0.875rem;
+  }
+
+  .cta {
+    margin-top: 2rem;
+  }
+
+  .ctaButton {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    width: 100%;
+  }
+}
+
+/* Extra small screens (Galaxy Fold outer) */
+@media (max-width: 320px) {
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .iconWrapper {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .iconWrapper svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .cardTitle {
+    font-size: 0.9375rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .cardDescription {
+    font-size: 0.75rem;
+  }
+
+  .ctaButton {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+}

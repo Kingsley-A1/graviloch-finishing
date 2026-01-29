@@ -1,0 +1,256 @@
+/* TestimonialPreview Component Styles */
+
+.section {
+  padding: 5rem 0;
+  background: var(--obsidian-900);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Quote Icon */
+.quoteIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--primary-500);
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+}
+
+.quoteIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Stars */
+.stars {
+  margin-bottom: 1.5rem;
+}
+
+/* Quote */
+.quote {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--foreground);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  max-width: 750px;
+}
+
+/* Author */
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--gradient-gold);
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--obsidian-900);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.authorName {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.authorMeta {
+  font-size: 0.875rem;
+  color: var(--primary-500);
+}
+
+/* CTA */
+.cta {
+  margin-top: 0.5rem;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  border-color: var(--gold-400);
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--gold-400);
+}
+
+/* Decorative Elements */
+.decorLeft,
+.decorRight {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.08;
+}
+
+.decorLeft {
+  top: -100px;
+  left: -100px;
+  background: var(--gradient-primary);
+}
+
+.decorRight {
+  bottom: -100px;
+  right: -100px;
+  background: var(--gradient-gold);
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .section {
+    padding: 6rem 0;
+  }
+
+  .quoteIcon {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .quoteIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stars {
+    margin-bottom: 1rem;
+  }
+
+  .quote {
+    margin-bottom: 1.5rem;
+  }
+
+  .author {
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.875rem;
+  }
+
+  .authorName {
+    font-size: 1rem;
+  }
+
+  .authorMeta {
+    font-size: 0.8125rem;
+  }
+
+  .ctaButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+
+  .decorLeft,
+  .decorRight {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Extra small screens (Galaxy Fold outer) */
+@media (max-width: 320px) {
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .quoteIcon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .quote {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .author {
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  .authorName {
+    font-size: 0.875rem;
+  }
+
+  .authorMeta {
+    font-size: 0.75rem;
+  }
+
+  .ctaButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .decorLeft,
+  .decorRight {
+    width: 150px;
+    height: 150px;
+  }
+}

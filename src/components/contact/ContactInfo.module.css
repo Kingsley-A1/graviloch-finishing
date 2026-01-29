@@ -1,0 +1,218 @@
+/**
+ * ContactInfo Styles
+ * ==================
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Section */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--gold-400);
+  font-family: "Playfair Display", serif;
+}
+
+/* Details */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detailItem {
+  display: flex;
+  gap: 1rem;
+}
+
+.detailIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.detailIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.detailContent {
+  flex: 1;
+}
+
+.detailTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.detailText {
+  font-size: 0.875rem;
+  color: var(--obsidian-300);
+}
+
+.detailSubtext {
+  font-size: 0.75rem;
+  color: var(--obsidian-400);
+}
+
+.detailLink {
+  font-size: 0.875rem;
+  color: var(--primary-400);
+  transition: color 0.2s ease;
+}
+
+.detailLink:hover {
+  color: var(--primary-300);
+}
+
+/* Hours */
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.hoursDay {
+  color: var(--obsidian-300);
+}
+
+.hoursTime {
+  font-weight: 500;
+}
+
+/* Social Links */
+.socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--obsidian-700);
+  border-radius: 50%;
+  color: var(--obsidian-300);
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--gradient-primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.socialLink svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Galaxy Fold (Extra Small) */
+@media (max-width: 300px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .details {
+    gap: 1rem;
+  }
+
+  .detailIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .detailIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .detailTitle {
+    font-size: 0.75rem;
+  }
+
+  .detailText,
+  .detailLink {
+    font-size: 0.75rem;
+  }
+
+  .detailSubtext {
+    font-size: 0.625rem;
+  }
+
+  .hoursRow {
+    font-size: 0.75rem;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .socialLink {
+    width: 36px;
+    height: 36px;
+  }
+
+  .socialLink svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (min-width: 301px) and (max-width: 479px) {
+  .section {
+    padding: 1.25rem;
+  }
+}
+
+/* Tablet and Up */
+@media (min-width: 768px) {
+  .section {
+    padding: 1.5rem;
+  }
+
+  .detailIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .detailIcon svg {
+    width: 22px;
+    height: 22px;
+  }
+}

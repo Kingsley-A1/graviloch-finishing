@@ -1,0 +1,227 @@
+/* MobileNav Component Styles */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  width: 100%;
+  max-width: 320px;
+  background: var(--obsidian-900);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.logo img {
+  border-radius: 6px;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.tagline {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--primary-500);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  color: var(--obsidian-300);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Links */
+.links {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--obsidian-300);
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.link.active {
+  color: var(--foreground);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.activeBar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--primary-500);
+  border-radius: 0 3px 3px 0;
+}
+
+/* CTA */
+.cta {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.ctaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--gradient-primary);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ctaButton:hover {
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+}
+
+.whatsappButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #25d366;
+  background: rgba(37, 211, 102, 0.1);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.whatsappButton:hover {
+  background: rgba(37, 211, 102, 0.2);
+}
+
+/* Footer */
+.footer {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  font-size: 0.8125rem;
+  color: var(--obsidian-400);
+  margin: 0;
+}
+
+.footer p:first-child {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+  .drawer {
+    max-width: 100%;
+  }
+
+  .header {
+    padding: 0.75rem;
+  }
+
+  .logo img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .brand {
+    font-size: 0.875rem;
+  }
+
+  .links {
+    padding: 1rem 0.75rem;
+  }
+
+  .link {
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .cta {
+    padding: 0.75rem;
+  }
+
+  .ctaButton,
+  .whatsappButton {
+    padding: 0.875rem;
+    font-size: 0.875rem;
+  }
+}
