@@ -68,7 +68,7 @@ export const metadata: Metadata = {
       "Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint. Premium Italian finishes across Nigeria.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "GRAVILOCH FINISHINGS LTD - Nikkolor Italian Decorative Paint",
@@ -80,15 +80,15 @@ export const metadata: Metadata = {
     title: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
     description:
       "Sole distributors of Nikkolor Italian Decorative Paint. Stucco Veneziano, Marmorino, Travertino, Metallika finishes.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
     creator: "@graviloch",
   },
   icons: {
     icon: [
-      { url: "/icons/image.png", sizes: "any", type: "image/png" },
+      { url: "/icons/logo.png", sizes: "any", type: "image/png" },
     ],
     apple: [
-      { url: "/icons/image.png", sizes: "180x180", type: "image/png" },
+      { url: "/icons/logo.png", sizes: "180x180", type: "image/png" },
     ],
   },
   manifest: "/manifest.json",
