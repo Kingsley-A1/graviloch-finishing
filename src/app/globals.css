@@ -20,6 +20,14 @@
   --gold-700: #92400e;
   --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #b8860b 100%);
 
+  /* Accent - Brand Red */
+  --red-400: #f87171;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --red-700: #b91c1c;
+  --brand-red: #c62828;
+  --gradient-red: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+
   /* Neutral - Obsidian & White */
   --white: #ffffff;
   --obsidian-50: #f5f5f5;
@@ -105,6 +113,11 @@ a {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.text-red {
+  color: var(--brand-red);
+  font-weight: 700;
 }
 
 .glass-panel {

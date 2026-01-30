@@ -27,20 +27,21 @@ export default function StorySection() {
               Passion Meets <span className="text-gradient">Precision</span>
             </h2>
             <p className={styles.text}>
-              GRAVILOCH FINISHING was born from a deep passion for Italian
-              decorative arts. We saw a gap in the Nigerian market for
-              authentic, high-quality Italian painting techniques and set out to
-              fill it.
+              GRAVILOCH FINISHINGS <span className="text-red">LTD</span> was born from a deep passion for Italian
+              decorative arts. As the sole distributors of Nikkolor Italian
+              Decorative Paint in Nigeria, we bring authentic European finishes
+              to transform Nigerian spaces.
             </p>
             <p className={styles.text}>
-              Our team of skilled artisans has trained extensively in
-              traditional Italian methods, combining centuries-old techniques
-              with modern aesthetics to create stunning finishes that transform
-              any space.
+              Under the leadership of Mr. Christian N. Ugwu, our team of skilled
+              artisans has trained extensively in traditional Italian methods,
+              combining centuries-old techniques with modern aesthetics to
+              create stunning finishes that transform any space.
             </p>
             <p className={styles.text}>
-              We believe every wall tells a story. Our mission is to help you
-              write yours with elegance, sophistication, and lasting beauty.
+              From Port Harcourt to Lagos, Abuja, Calabar, and Uyo — we believe
+              every wall tells a story. Our mission is to help you write yours
+              with elegance, sophistication, and lasting beauty.
             </p>
           </motion.div>
 

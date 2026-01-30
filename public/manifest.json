@@ -1,29 +1,31 @@
 {
-  "name": "GRAVILOCH FINISHING",
+  "name": "GRAVILOCH FINISHINGS LTD",
   "short_name": "Graviloch",
-  "description": "Italian Painting & Sales - Professional application of Venetian plaster, Marmorino, Travertino, and Metallic finishes",
+  "description": "Sole distributors of Nikkolor Italian Decorative Paint - Stucco Veneziano, Marmorino, Travertino, Metallika, Microcemento and more",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0d0d",
+  "background_color": "#141418",
   "theme_color": "#10b981",
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [
     {
-      "src": "/icons/image.png",
+      "src": "/icons/logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
     }
   ],
-  "categories": ["business", "shopping"],
+  "categories": ["business", "shopping", "lifestyle"],
   "screenshots": [
     {
-      "src": "/images/hero/venetian-living-room.webp",
+      "src": "/og-image.jpg",
       "sizes": "1200x630",
-      "type": "image/webp",
+      "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "GRAVILOCH FINISHING - Italian Painting Excellence"
+      "label": "GRAVILOCH FINISHINGS LTD - Nikkolor Italian Decorative Paint"
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

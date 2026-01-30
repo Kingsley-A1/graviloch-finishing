@@ -59,7 +59,7 @@ export default function Header() {
             <div className={styles.logoImageWrapper}>
               <Image
                 src="/icons/logo.png"
-                alt="GRAVILOCH FINISHING"
+                alt="GRAVILOCH FINISHINGS LTD"
                 width={44}
                 height={44}
                 priority
@@ -67,8 +67,8 @@ export default function Header() {
               />
             </div>
             <div className={styles.logoText}>
-              <span className={styles.brand}>GRAVILOCH</span>
-              <span className={styles.tagline}>FINISHING</span>
+              <span className={styles.brand}>GRAVILOCH <span className={styles.ltd}>LTD</span></span>
+              <span className={styles.tagline}>FINISHINGS</span>
             </div>
           </Link>
 

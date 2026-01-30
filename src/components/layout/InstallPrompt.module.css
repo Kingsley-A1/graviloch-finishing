@@ -1,0 +1,242 @@
+/* InstallPrompt Styles */
+
+.overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.prompt {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  background: linear-gradient(145deg, #1e1e24 0%, #141418 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--obsidian-400);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--foreground);
+}
+
+.closeButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.iconWrapper {
+  width: 64px;
+  height: 64px;
+  background: white;
+  border-radius: 1rem;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.iconWrapper img {
+  border-radius: 0.75rem;
+}
+
+.headerText {
+  flex: 1;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+}
+
+.ltd {
+  color: #c62828;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--obsidian-300);
+}
+
+.benefits {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  color: var(--primary-400);
+}
+
+.benefit svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.installButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
+  border: none;
+  border-radius: 0.625rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.installButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.installButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.laterButton {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  color: var(--obsidian-300);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.laterButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--foreground);
+}
+
+/* iOS Instructions */
+.iosInstructions {
+  text-align: center;
+}
+
+.iosInstructions p {
+  font-size: 0.875rem;
+  color: var(--obsidian-300);
+  margin-bottom: 0.75rem;
+}
+
+.iosSteps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.iosStep {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--foreground);
+}
+
+.iosStep svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-500);
+}
+
+.arrow {
+  color: var(--obsidian-400);
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .prompt {
+    padding: 1.25rem;
+  }
+
+  .iconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .benefits {
+    gap: 0.5rem;
+  }
+
+  .benefit {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.6875rem;
+  }
+
+  .iosSteps {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+}

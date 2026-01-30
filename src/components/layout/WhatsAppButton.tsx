@@ -25,8 +25,8 @@ export default function WhatsAppButton({ message }: WhatsAppButtonProps) {
   if (pathname === "/contact") return null;
 
   const defaultMessage =
-    "Hello GRAVILOCH FINISHING! 🎨 I'm interested in your painting services.";
-  const whatsappUrl = `https://wa.me/2349036826272?text=${encodeURIComponent(
+    "Hello GRAVILOCH FINISHINGS LTD! 🎨 I'm interested in your Italian decorative painting services.";
+  const whatsappUrl = `https://wa.me/2348035070793?text=${encodeURIComponent(
     message || defaultMessage,
   )}`;
 

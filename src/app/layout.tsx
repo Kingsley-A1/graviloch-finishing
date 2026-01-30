@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import { Header, Footer, WhatsAppButton } from "@/components/layout";
+import { Header, Footer, WhatsAppButton, InstallPrompt } from "@/components/layout";
 import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
@@ -25,30 +25,34 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://graviloch.com"),
+  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://gravilochfinishings.com"),
   title: {
-    default: "GRAVILOCH FINISHING | Italian Painting Excellence",
-    template: "%s | GRAVILOCH FINISHING",
+    default: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
+    template: "%s | GRAVILOCH FINISHINGS LTD",
   },
   description:
-    "Premium Italian painting services in Nigeria. Venetian plaster, Marmorino, Travertino, and metallic finishes. Transform your space with authentic Italian elegance.",
+    "Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint in Nigeria. Stucco Veneziano, Marmorino, Travertino, Metallika, Microcemento and more. Port Harcourt • Lagos • Abuja • Calabar • Uyo.",
   keywords: [
     "Italian painting",
-    "Venetian plaster",
-    "Marmorino",
+    "Nikkolor paint",
+    "Stucco Veneziano",
+    "Stucco Marmorino",
     "Travertino",
-    "metallic finishes",
+    "Metallika finishes",
+    "Microcemento",
     "decorative painting",
-    "interior design",
-    "Lagos painting",
-    "Nigeria painting services",
+    "Italian decorative paint Nigeria",
+    "Port Harcourt painting",
+    "Lagos painting services",
     "luxury finishes",
     "wall textures",
-    "GRAVILOCH FINISHING",
+    "GRAVILOCH FINISHINGS LTD",
+    "Perla D'Oriente",
+    "Stonehenge",
   ],
-  authors: [{ name: "GRAVILOCH FINISHING" }],
-  creator: "GRAVILOCH FINISHING",
-  publisher: "GRAVILOCH FINISHING",
+  authors: [{ name: "GRAVILOCH FINISHINGS LTD" }],
+  creator: "GRAVILOCH FINISHINGS LTD",
+  publisher: "GRAVILOCH FINISHINGS LTD",
   formatDetection: {
     email: false,
     address: false,
@@ -58,25 +62,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_NG",
     url: "/",
-    siteName: "GRAVILOCH FINISHING",
-    title: "GRAVILOCH FINISHING | Italian Painting Excellence",
+    siteName: "GRAVILOCH FINISHINGS LTD",
+    title: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
     description:
-      "Premium Italian painting services in Nigeria. Transform your space with authentic Venetian plaster, Marmorino, and metallic finishes.",
+      "Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint. Premium Italian finishes across Nigeria.",
     images: [
       {
-        url: "/images/hero/venetian-living-room.webp",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "GRAVILOCH FINISHING - Italian Painting Excellence",
+        alt: "GRAVILOCH FINISHINGS LTD - Nikkolor Italian Decorative Paint",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GRAVILOCH FINISHING | Italian Painting Excellence",
+    title: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
     description:
-      "Premium Italian painting services in Nigeria. Venetian plaster, Marmorino, Travertino, and metallic finishes.",
-    images: ["/images/hero/venetian-living-room.webp"],
+      "Sole distributors of Nikkolor Italian Decorative Paint. Stucco Veneziano, Marmorino, Travertino, Metallika finishes.",
+    images: ["/og-image.jpg"],
     creator: "@graviloch",
   },
   icons: {
@@ -122,6 +126,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
+          <InstallPrompt />
         </ToastProvider>
       </body>
     </html>
