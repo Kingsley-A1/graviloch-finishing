@@ -94,11 +94,6 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button (Desktop) */}
-          <Link href="/contact" className={styles.ctaButton}>
-            Get Quote
-          </Link>
-
           {/* Mobile Menu Button */}
           <button
             className={styles.menuButton}
