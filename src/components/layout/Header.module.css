@@ -83,6 +83,11 @@
   text-transform: uppercase;
 }
 
+.tagline .ltd {
+  color: #c62828;
+  font-weight: 700;
+}
+
 /* Navigation */
 .nav {
   display: none;

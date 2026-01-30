@@ -67,8 +67,8 @@ export default function Header() {
               />
             </div>
             <div className={styles.logoText}>
-              <span className={styles.brand}>GRAVILOCH <span className={styles.ltd}>LTD</span></span>
-              <span className={styles.tagline}>FINISHINGS</span>
+              <span className={styles.brand}>GRAVILOCH</span>
+              <span className={styles.tagline}>FINISHINGS <span className={styles.ltd}>LTD</span></span>
             </div>
           </Link>
 

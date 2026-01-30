@@ -1,20 +1,17 @@
-/**
- * Admin Login Page Styles
- * =======================
- */
+/* Admin Register Page Styles */
 
 .page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
   background: linear-gradient(
     135deg,
     var(--obsidian-950) 0%,
     var(--obsidian-900) 50%,
     var(--obsidian-950) 100%
   );
+  padding: 2rem 1rem;
 }
 
 .container {
@@ -113,6 +110,11 @@
   margin: 0;
 }
 
+.submitButton {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
 /* Footer */
 .footer {
   text-align: center;
@@ -121,13 +123,6 @@
 .footer p {
   font-size: 0.875rem;
   color: var(--obsidian-400);
-  margin: 0.5rem 0;
-}
-
-.copyright {
-  font-size: 0.75rem !important;
-  color: var(--obsidian-500) !important;
-  margin-top: 1rem !important;
 }
 
 .link {
@@ -150,43 +145,5 @@
 
   .title {
     font-size: 1.5rem;
-  }
-}
-
-/* Galaxy Fold */
-@media (max-width: 300px) {
-  .page {
-    padding: 1rem 0.5rem;
-  }
-
-  .logo {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.75rem;
-  }
-}
-
-  .brand {
-    font-size: 1rem;
-  }
-
-  .form {
-    padding: 1.25rem;
-    gap: 1rem;
-  }
-
-  .title {
-    font-size: 1.25rem;
-  }
-
-  .subtitle {
-    font-size: 0.75rem;
-  }
-}
-
-/* Small Mobile */
-@media (min-width: 301px) and (max-width: 479px) {
-  .form {
-    padding: 1.5rem;
   }
 }

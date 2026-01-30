@@ -1,14 +1,12 @@
 /**
- * Admin Login Page
- * ================
- * Admin authentication page.
- * Uses shared registration code as password.
+ * Admin Registration Page
+ * =======================
+ * New admin signup with shared registration code.
  */
 
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,13 +15,14 @@ import Input from "@/components/ui/Input";
 import { useToast } from "@/components/ui/Toast";
 import styles from "./page.module.css";
 
-export default function AdminLoginPage() {
+export default function AdminRegisterPage() {
   const router = useRouter();
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
-    password: "",
+    registrationCode: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -37,8 +36,14 @@ export default function AdminLoginPage() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
+    if (!formData.name.trim()) newErrors.name = "Full name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.password.trim()) newErrors.password = "Admin code is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+    if (!formData.registrationCode.trim()) {
+      newErrors.registrationCode = "Registration code is required";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -49,19 +54,21 @@ export default function AdminLoginPage() {
 
     setIsLoading(true);
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: formData.email,
-        password: formData.password,
+      const response = await fetch("/api/admin/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      if (result?.error) {
-        toast.error("Invalid email or admin code");
-      } else {
-        toast.success("Welcome back!");
-        router.push("/admin");
-        router.refresh();
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || "Registration failed");
+        return;
       }
+
+      toast.success("Registration successful! Please login.");
+      router.push("/admin/login");
     } catch {
       toast.error("Something went wrong");
     } finally {
@@ -91,11 +98,24 @@ export default function AdminLoginPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className={styles.form}>
-          <h1 className={styles.title}>Admin Login</h1>
-          <p className={styles.subtitle}>Sign in to access your dashboard</p>
+          <h1 className={styles.title}>Admin Registration</h1>
+          <p className={styles.subtitle}>
+            Join the GRAVILOCH admin workspace
+          </p>
 
           <Input
-            label="Email"
+            label="Full Name"
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            error={errors.name}
+            placeholder="Your full name"
+            required
+          />
+
+          <Input
+            label="Email Address"
             name="email"
             type="email"
             value={formData.email}
@@ -106,13 +126,13 @@ export default function AdminLoginPage() {
           />
 
           <Input
-            label="Admin Code"
-            name="password"
+            label="Registration Code"
+            name="registrationCode"
             type="password"
-            value={formData.password}
+            value={formData.registrationCode}
             onChange={handleChange}
-            error={errors.password}
-            placeholder="Enter shared admin code"
+            error={errors.registrationCode}
+            placeholder="Enter admin registration code"
             required
           />
 
@@ -122,31 +142,23 @@ export default function AdminLoginPage() {
               <path d="M12 16v-4M12 8h.01" />
             </svg>
             <p>
-              Use the shared admin registration code to login.
+              The registration code is shared among all admins. 
+              Use this same code to login after registration.
             </p>
           </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            size="lg"
-            isLoading={isLoading}
-            fullWidth
-          >
-            Sign In
+          <Button type="submit" disabled={isLoading} className={styles.submitButton}>
+            {isLoading ? "Registering..." : "Register"}
           </Button>
         </form>
 
         {/* Footer */}
         <div className={styles.footer}>
           <p>
-            Don&apos;t have an account?{" "}
-            <Link href="/admin/register" className={styles.link}>
-              Register
+            Already have an account?{" "}
+            <Link href="/admin/login" className={styles.link}>
+              Sign in
             </Link>
-          </p>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} GRAVILOCH FINISHINGS LTD
           </p>
         </div>
       </div>
