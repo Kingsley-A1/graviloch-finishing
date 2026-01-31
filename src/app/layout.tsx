@@ -25,7 +25,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXTAUTH_URL || "https://gravilochfinishings.com"),
+  metadataBase: new URL(
+    process.env.NEXTAUTH_URL ||
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://gravilochfinishings.com")
+  ),
   title: {
     default: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
     template: "%s | GRAVILOCH FINISHINGS LTD",

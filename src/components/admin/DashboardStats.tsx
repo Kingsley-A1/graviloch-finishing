@@ -15,7 +15,9 @@ interface StatCardProps {
 }
 
 async function getStats() {
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXTAUTH_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
   try {
     const res = await fetch(`${baseUrl}/api/analytics?type=summary`, {
       cache: "no-store",

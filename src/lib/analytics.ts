@@ -9,6 +9,10 @@ import prisma from "./prisma";
 import { type NextRequest } from "next/server";
 import crypto from "crypto";
 
+type GroupByEventCount = { event: string; _count: { event: number } };
+type GroupByPageCount = { page: string; _count: { page: number } };
+type GroupByProductIdCount = { productId: string | null; _count: { productId: number } };
+
 /**
  * Analytics event types
  */
@@ -142,11 +146,11 @@ export async function getAnalyticsSummary(days: number = 30) {
     return {
       totalViews,
       uniqueVisitors: uniqueVisitors.length,
-      eventBreakdown: eventBreakdown.map((e) => ({
+      eventBreakdown: eventBreakdown.map((e: GroupByEventCount) => ({
         event: e.event,
         count: e._count.event,
       })),
-      topPages: topPages.map((p) => ({
+      topPages: topPages.map((p: GroupByPageCount) => ({
         page: p.page,
         views: p._count.page,
       })),
@@ -181,7 +185,7 @@ export async function getProductAnalytics(productId?: string) {
       });
 
       return events.reduce(
-        (acc, e) => {
+        (acc, e: GroupByEventCount) => {
           acc[e.event] = e._count.event;
           return acc;
         },
@@ -212,7 +216,7 @@ export async function getProductAnalytics(productId?: string) {
 
     const productMap = new Map(products.map((p) => [p.id, p]));
 
-    return topProducts.map((p) => ({
+    return topProducts.map((p: GroupByProductIdCount) => ({
       product: productMap.get(p.productId!),
       totalEngagements: p._count.productId,
     }));
