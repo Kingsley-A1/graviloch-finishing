@@ -206,7 +206,7 @@ export async function getProductAnalytics(productId?: string) {
 
     // Get product details
     const productIds = topProducts
-      .map((p) => p.productId)
+      .map((p: GroupByProductIdCount) => p.productId)
       .filter(Boolean) as string[];
     const products = await prisma.product.findMany({
       where: { id: { in: productIds } },
