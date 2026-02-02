@@ -26,12 +26,15 @@ interface ProductFormModalProps {
 }
 
 const categories = [
-  "Interior Paints",
-  "Exterior Paints",
-  "Decorative Finishes",
-  "Tools & Equipment",
-  "Primers & Sealers",
-  "Specialty Products",
+  { value: "venetian", label: "Venetian Plaster" },
+  { value: "marmorino", label: "Marmorino" },
+  { value: "travertino", label: "Travertino" },
+  { value: "metallic", label: "Metallic Finishes" },
+  { value: "liquid-metal", label: "Liquid Metal" },
+  { value: "decorative", label: "Decorative" },
+  { value: "specialty", label: "Specialty" },
+  { value: "tools", label: "Tools" },
+  { value: "other", label: "Other" },
 ];
 
 export default function ProductFormModal({
@@ -41,7 +44,7 @@ export default function ProductFormModal({
 }: ProductFormModalProps) {
   const [formData, setFormData] = useState({
     name: product?.name || "",
-    category: product?.category || categories[0],
+    category: product?.category || categories[0].value,
     price: product?.price?.toString() || "",
     description: product?.description || "",
     featured: product?.featured || false,
@@ -81,10 +84,15 @@ export default function ProductFormModal({
           body: uploadData,
         });
 
-        if (uploadRes.ok) {
-          const uploadJson = await uploadRes.json();
-          imageUrl = uploadJson.url;
+        const uploadJson = await uploadRes.json();
+
+        if (!uploadRes.ok || !uploadJson?.data?.url) {
+          throw new Error(
+            uploadJson?.error || "Image upload failed. Please try again.",
+          );
         }
+
+        imageUrl = uploadJson.data.url;
       }
 
       if (!imageUrl) {
@@ -117,7 +125,8 @@ export default function ProductFormModal({
       }
     } catch (error) {
       console.error("Save failed:", error);
-      alert("Failed to save product");
+      const message = error instanceof Error ? error.message : "Failed to save product";
+      alert(message);
     } finally {
       setLoading(false);
     }
@@ -147,8 +156,8 @@ export default function ProductFormModal({
             className={styles.select}
           >
             {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
               </option>
             ))}
           </select>
