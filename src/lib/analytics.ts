@@ -12,6 +12,7 @@ import crypto from "crypto";
 type GroupByEventCount = { event: string; _count: { event: number } };
 type GroupByPageCount = { page: string; _count: { page: number } };
 type GroupByProductIdCount = { productId: string | null; _count: { productId: number } };
+type DailyView = { date: string; count: bigint };
 
 /**
  * Analytics event types
@@ -133,9 +134,7 @@ export async function getAnalyticsSummary(days: number = 30) {
     });
 
     // Daily views for chart
-    const dailyViews = await prisma.$queryRaw<
-      Array<{ date: string; count: bigint }>
-    >`
+    const dailyViews = await prisma.$queryRaw<Array<DailyView>>`
       SELECT DATE("createdAt") as date, COUNT(*) as count
       FROM "Analytics"
       WHERE event = 'page_view' AND "createdAt" >= ${startDate}
@@ -154,7 +153,7 @@ export async function getAnalyticsSummary(days: number = 30) {
         page: p.page,
         views: p._count.page,
       })),
-      dailyViews: dailyViews.map((d) => ({
+      dailyViews: dailyViews.map((d: DailyView) => ({
         date: d.date,
         count: Number(d.count),
       })),
