@@ -207,6 +207,48 @@
   background: rgba(15, 23, 42, 0.5);
 }
 
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(148, 163, 184, 0.08);
+  margin-bottom: 0.5rem;
+}
+
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
 .backLink {
   display: flex;
   align-items: center;

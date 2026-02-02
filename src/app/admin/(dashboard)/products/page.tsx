@@ -17,6 +17,8 @@ interface Product {
   name: string;
   category: string;
   price: number;
+  description?: string;
+  imageUrl?: string;
   featured: boolean;
   createdAt: string;
 }
@@ -82,7 +84,7 @@ export default function AdminProductsPage() {
     {
       key: "price",
       label: "Price",
-      render: (row: Product) => `€${row.price.toFixed(2)}`,
+      render: (row: Product) => `₦${row.price.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     },
     {
       key: "featured",

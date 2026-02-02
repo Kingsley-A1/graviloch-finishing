@@ -91,7 +91,17 @@ const navItems = [
   },
 ];
 
-export default function AdminSidebar() {
+interface AdminUser {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+}
+
+interface AdminSidebarProps {
+  user?: AdminUser | null;
+}
+
+export default function AdminSidebar({ user }: AdminSidebarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -257,8 +267,20 @@ export default function AdminSidebar() {
               })}
             </nav>
 
-            {/* Back to Site */}
+            {/* Footer */}
             <div className={styles.footer}>
+              {user && (
+                <div className={styles.userCard}>
+                  <div className={styles.userAvatar}>{user.name?.[0]?.toUpperCase() || "A"}</div>
+                  {!isCollapsed && (
+                    <div className={styles.userMeta}>
+                      <span className={styles.userName}>{user.name || "Admin"}</span>
+                      <span className={styles.userEmail}>{user.email}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
               <Link href="/" className={styles.backLink} title={isCollapsed ? "Back to Site" : undefined}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="15 18 9 12 15 6" />

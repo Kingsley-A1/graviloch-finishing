@@ -45,6 +45,11 @@ export default function Header() {
     closeNav();
   }, [pathname]);
 
+  // Hide the public header on admin routes to avoid overlap with admin chrome
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       <motion.header

@@ -23,7 +23,7 @@ export default async function AdminDashboardLayout({
 
   return (
     <div className={styles.layout}>
-      <AdminSidebar />
+      <AdminSidebar user={session.user} />
       <div className={styles.main}>
         <AdminHeader user={session.user} />
         <main className={styles.content}>{children}</main>

@@ -25,20 +25,7 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
 
   return (
     <header className={styles.header}>
-      <div className={styles.spacer} />
-
       <div className={styles.actions}>
-        {user && (
-          <div className={styles.user}>
-            <div className={styles.userAvatar}>
-              {user.name?.[0]?.toUpperCase() || "A"}
-            </div>
-            <div className={styles.userInfo}>
-              <span className={styles.userName}>{user.name || "Admin"}</span>
-              <span className={styles.userEmail}>{user.email}</span>
-            </div>
-          </div>
-        )}
         <Button variant="ghost" size="sm" onClick={handleSignOut}>
           Sign Out
         </Button>

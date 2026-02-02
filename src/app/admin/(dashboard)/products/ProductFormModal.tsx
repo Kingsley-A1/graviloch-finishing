@@ -15,6 +15,7 @@ interface Product {
   category: string;
   price: number;
   description?: string;
+  imageUrl?: string;
   featured: boolean;
 }
 
@@ -53,7 +54,21 @@ export default function ProductFormModal({
     setLoading(true);
 
     try {
-      let imageUrl = "";
+      const description = formData.description.trim();
+      if (description.length < 10) {
+        alert("Description must be at least 10 characters.");
+        setLoading(false);
+        return;
+      }
+
+      const priceValue = parseFloat(formData.price);
+      if (Number.isNaN(priceValue) || priceValue <= 0) {
+        alert("Please enter a valid price.");
+        setLoading(false);
+        return;
+      }
+
+      let imageUrl = product?.imageUrl || "";
 
       // Upload image first if present
       if (imageFile) {
@@ -72,11 +87,18 @@ export default function ProductFormModal({
         }
       }
 
+      if (!imageUrl) {
+        alert("Please upload a product image.");
+        setLoading(false);
+        return;
+      }
+
       // Create/Update product
       const productData = {
         ...formData,
-        price: parseFloat(formData.price),
-        ...(imageUrl && { images: [imageUrl] }),
+        description,
+        price: priceValue,
+        imageUrl,
       };
 
       const url = product?.id ? `/api/products/${product.id}` : "/api/products";
@@ -133,7 +155,7 @@ export default function ProductFormModal({
         </div>
 
         <Input
-          label="Price (€)"
+          label="Price (₦)"
           type="number"
           step="0.01"
           value={formData.price}
