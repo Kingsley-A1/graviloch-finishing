@@ -184,7 +184,7 @@ export async function getProductAnalytics(productId?: string) {
       });
 
       return events.reduce(
-        (acc, e: GroupByEventCount) => {
+        (acc: Record<string, number>, e: GroupByEventCount) => {
           acc[e.event] = e._count.event;
           return acc;
         },
