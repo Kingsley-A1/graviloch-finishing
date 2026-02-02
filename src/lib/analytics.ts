@@ -213,7 +213,7 @@ export async function getProductAnalytics(productId?: string) {
       select: { id: true, name: true, imageUrl: true },
     });
 
-    const productMap = new Map(products.map((p) => [p.id, p]));
+    const productMap = new Map(products.map((p: { id: string; name: string; imageUrl: string }) => [p.id, p]));
 
     return topProducts.map((p: GroupByProductIdCount) => ({
       product: productMap.get(p.productId!),
