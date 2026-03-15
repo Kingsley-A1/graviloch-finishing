@@ -37,6 +37,7 @@ model GalleryImage {
   title     String
   category  String   // interior, exterior, office, dining, etc.
   imageUrl  String
+  featured  Boolean  @default(false)
   likes     Int      @default(0)
   views     Int      @default(0)
   createdAt DateTime @default(now())
@@ -50,6 +51,8 @@ model Review {
   rating    Int      // 1-5 stars
   message   String
   approved  Boolean  @default(false)
+  isAvailable Boolean  @default(true)
+  featured    Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
@@ -62,4 +65,15 @@ model Analytics {
   userAgent String?
   ipHash    String?  // Hashed for privacy
   createdAt DateTime @default(now())
+}
+
+model Sample {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  category    String
+  isAvailable Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
