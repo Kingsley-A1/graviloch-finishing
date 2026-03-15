@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000, // 1 year cache
     dangerouslyAllowSVG: false,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    localPatterns: [
+      {
+        pathname: '/icons/**',
+        search: 'v=2',
+      },
+    ],
     remotePatterns: [
       {
         protocol: "https",
