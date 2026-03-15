@@ -10,12 +10,13 @@ import {
   type Review,
   type Admin,
   type Analytics,
+  type Sample,
 } from "@prisma/client";
 
 // ==========================================
 // Re-export Prisma types
 // ==========================================
-export type { Product, GalleryImage, Review, Admin, Analytics };
+export type { Product, GalleryImage, Review, Admin, Analytics, Sample };
 
 // ==========================================
 // API Response Types
@@ -124,6 +125,36 @@ export interface GalleryFilters {
 }
 
 // ==========================================
+// Sample Types
+// ==========================================
+export type SampleCategory =
+  | "venetian"
+  | "stucco"
+  | "travertino"
+  | "metallic"
+  | "liquid-metal"
+  | "microcemento"
+  | "other";
+
+export interface CreateSampleInput {
+  title: string;
+  description?: string;
+  category: SampleCategory;
+  imageUrl: string;
+  isAvailable?: boolean;
+}
+
+export interface UpdateSampleInput extends Partial<CreateSampleInput> {
+  id: string;
+}
+
+export interface SampleFilters {
+  category?: SampleCategory;
+  search?: string;
+  isAvailable?: boolean;
+}
+
+// ==========================================
 // Review Types
 // ==========================================
 export interface CreateReviewInput {
@@ -172,7 +203,7 @@ export interface ContactFormResponse {
 // ==========================================
 export interface UploadRequest {
   file: File;
-  folder: "products" | "gallery" | "reviews";
+  folder: "products" | "gallery" | "reviews" | "samples";
 }
 
 export interface UploadResponse {
@@ -185,7 +216,7 @@ export interface UploadResponse {
 export interface PresignedUrlRequest {
   filename: string;
   contentType: string;
-  folder: "products" | "gallery" | "reviews";
+  folder: "products" | "gallery" | "reviews" | "samples";
 }
 
 export interface PresignedUrlResponse {
@@ -358,6 +389,7 @@ import { z } from "zod";
 export const ProductCategoryEnum = z.enum([
   "venetian",
   "marmorino",
+  "stucco",
   "travertino",
   "metallic",
   "liquid-metal",
@@ -403,6 +435,28 @@ export const CreateGallerySchema = z.object({
 });
 
 export const UpdateGallerySchema = CreateGallerySchema.partial().extend({
+  id: z.string().cuid(),
+});
+
+export const SampleCategoryEnum = z.enum([
+  "venetian",
+  "stucco",
+  "travertino",
+  "metallic",
+  "liquid-metal",
+  "microcemento",
+  "other",
+]);
+
+export const CreateSampleSchema = z.object({
+  title: z.string().min(2, "Title must be at least 2 characters").max(100),
+  description: z.string().max(1000).optional().or(z.literal("")),
+  category: SampleCategoryEnum,
+  imageUrl: z.string().url("Must be a valid URL"),
+  isAvailable: z.boolean().optional().default(true),
+});
+
+export const UpdateSampleSchema = CreateSampleSchema.partial().extend({
   id: z.string().cuid(),
 });
 

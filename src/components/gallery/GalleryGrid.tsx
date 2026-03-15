@@ -37,9 +37,9 @@ const mockGalleryImages: MockGalleryImage[] = [
   },
   {
     id: "mock-2",
-    title: "Marmorino Dining Space",
+    title: "Stucco Dining Space",
     category: "Dining",
-    imageUrl: "/images/hero/marmorino-dining.webp",
+    imageUrl: "/images/hero/stucco-dining.webp",
     likes: 98,
     views: 312,
     createdAt: new Date(),

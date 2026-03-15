@@ -42,7 +42,7 @@ const mockReviews: MockReview[] = [
     name: "Sophie Williams",
     email: "sophie@example.com",
     rating: 4,
-    message: "Beautiful marmorino finish in our master bedroom. The texture adds so much warmth and character. The team was punctual and clean. Very satisfied with the results.",
+    message: "Beautiful stucco finish in our master bedroom. The texture adds so much warmth and character. The team was punctual and clean. Very satisfied with the results.",
     approved: true,
     createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
   },

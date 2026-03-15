@@ -1,4 +1,4 @@
-/**
+﻿/**
  * CTASection Styles
  * =================
  */
@@ -12,7 +12,7 @@
 .background {
   position: absolute;
   inset: 0;
-  background: url("/images/about/paint-craftsmanship.webp") center/cover no-repeat;
+  background: url("/images/about/team-at-work.webp") center/cover no-repeat;
 }
 
 .overlay {
@@ -20,8 +20,8 @@
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(16, 185, 129, 0.9) 0%,
-    rgba(4, 120, 87, 0.95) 100%
+    rgba(16, 185, 129, 0.6) 0%,
+    rgba(4, 120, 87, 0.7) 100%
   );
 }
 
@@ -119,3 +119,4 @@
     padding: 8rem 2rem;
   }
 }
+

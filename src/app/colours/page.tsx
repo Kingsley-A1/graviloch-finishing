@@ -17,7 +17,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Colour Hub | GRAVILOCH FINISHING",
   description:
-    "Explore our extensive collection of Italian painting textures and colours. Venetian plaster, Marmorino, metallic finishes, and hundreds of colour options to transform your space.",
+    "Explore our extensive collection of Italian painting textures and colours. Venetian plaster, Stucco, metallic finishes, and hundreds of colour options to transform your space.",
   openGraph: {
     title: "Colour Hub | GRAVILOCH FINISHING",
     description:

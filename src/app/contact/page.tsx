@@ -27,7 +27,7 @@ export default function ContactPage() {
       <section className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>
-            Get in <span className="text-gradient">Touch</span>
+            Get in <span className="text-gold">Touch</span>
           </h1>
           <p className={styles.subtitle}>
             Ready to transform your space? Let&apos;s talk about your project.

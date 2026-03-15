@@ -17,7 +17,7 @@ const footerLinks = {
   ],
   services: [
     { href: "/shop?category=venetian", label: "Stucco Veneziano" },
-    { href: "/shop?category=marmorino", label: "Stucco Marmorino" },
+    { href: "/shop?category=stucco", label: "Stucco Stucco" },
     { href: "/shop?category=travertino", label: "Travertino" },
     { href: "/shop?category=metallic", label: "Metallika Finishes" },
     { href: "/shop?category=microcemento", label: "Microcemento" },
@@ -81,7 +81,7 @@ export default function Footer() {
           </Link>
           <p className={styles.description}>
             Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint.
-            Premium finishes including Stucco Veneziano, Marmorino, Travertino, Metallika, and more.
+            Premium finishes including Stucco Veneziano, Stucco, Travertino, Metallika, and more.
           </p>
           <p className={styles.director}>
             <strong>Director:</strong> Mr. Christian N. Ugwu

@@ -23,12 +23,12 @@ const textures = [
     popularity: 98,
   },
   {
-    id: "marmorino",
-    name: "Marmorino",
-    italianName: "Marmorino Classico",
+    id: "stucco",
+    name: "Stucco",
+    italianName: "Stucco Classico",
     description:
       "Traditional lime plaster with a softer, more natural stone appearance. Perfect for classical and contemporary spaces.",
-    image: "/images/hero/marmorino-dining.webp",
+    image: "/images/hero/stucco-dining.webp",
     features: ["Natural Stone", "Breathable", "Eco-Friendly"],
     popularity: 95,
   },

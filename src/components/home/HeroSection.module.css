@@ -41,9 +41,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0.4) 0%,
-    rgba(13, 13, 13, 0.6) 50%,
-    rgba(13, 13, 13, 0.9) 100%
+    rgba(13, 13, 13, 0.25) 0%,
+    rgba(13, 13, 13, 0.55) 45%,
+    rgba(13, 13, 13, 0.8) 100%
   );
 }
 
@@ -70,6 +70,9 @@
   color: var(--foreground);
   line-height: 1.1;
   margin: 0 0 1rem;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle {
@@ -82,10 +85,11 @@
 
 .description {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--obsidian-200);
+  color: rgba(255, 255, 255, 0.92);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
 }
 
 .actions {

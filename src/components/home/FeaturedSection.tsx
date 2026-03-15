@@ -22,11 +22,11 @@ const featuredItems = [
     href: "/shop?category=venetian",
   },
   {
-    id: "marmorino",
-    title: "Marmorino",
+    id: "stucco",
+    title: "Stucco",
     description: "Authentic lime-based texture with natural stone aesthetics.",
-    image: "/images/hero/marmorino-dining.webp",
-    href: "/shop?category=marmorino",
+    image: "/images/hero/stucco-dining.webp",
+    href: "/shop?category=stucco",
   },
   {
     id: "travertino",

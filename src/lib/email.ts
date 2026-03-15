@@ -259,7 +259,7 @@ export async function sendAutoReply(
               <p>We specialize in premium Italian painting finishes that transform ordinary spaces into extraordinary works of art. Our team of expert craftsmen are dedicated to delivering the finest quality in:</p>
               <ul>
                 <li>Venetian Plaster</li>
-                <li>Marmorino</li>
+                <li>Stucco</li>
                 <li>Travertino</li>
                 <li>Metallic & Liquid Metal Finishes</li>
               </ul>

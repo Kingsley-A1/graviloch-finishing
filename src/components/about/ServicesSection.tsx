@@ -22,10 +22,10 @@ const services = [
     ],
   },
   {
-    title: "Marmorino",
+    title: "Stucco",
     description:
       "Classic Italian technique creating elegant stone-like textures. Perfect for both modern and traditional spaces.",
-    image: "/images/hero/marmorino-dining.webp",
+    image: "/images/hero/stucco-dining.webp",
     features: ["Matte or polished", "Durable finish", "Timeless elegance"],
   },
   {

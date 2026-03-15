@@ -2,15 +2,17 @@
  * useFirstVisit Hook
  * ==================
  * Detects if this is the user's first visit to show welcome animation.
- * Uses localStorage to persist visit state.
+ * Uses localStorage to persist visit state with a 7-day cooldown.
  */
 
 "use client";
 
-import { useState, useCallback, useSyncExternalStore } from "react";
+import { useState, useCallback, useSyncExternalStore, useEffect } from "react";
 
-const STORAGE_KEY = "graviloch-visited";
-const ANIMATION_SHOWN_KEY = "graviloch-animation-shown";
+export const STORAGE_KEY = "graviloch-visited";
+export const ANIMATION_SHOWN_KEY = "graviloch-animation-shown";
+const COOLDOWN_DAYS = 7;
+const COOLDOWN_MS = COOLDOWN_DAYS * 24 * 60 * 60 * 1000;
 
 interface UseFirstVisitReturn {
   isFirstVisit: boolean;
@@ -33,36 +35,64 @@ function getStorageValue(key: string): string | null {
 
 // Subscribe function for useSyncExternalStore
 function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
   window.addEventListener("storage", callback);
   return () => window.removeEventListener("storage", callback);
 }
 
 export function useFirstVisit(): UseFirstVisitReturn {
   // Use useSyncExternalStore to safely read from localStorage
-  const hasVisited = useSyncExternalStore(
+  const hasVisitedStr = useSyncExternalStore(
     subscribe,
-    () => getStorageValue(STORAGE_KEY) === "true",
-    () => false, // Server snapshot
+    () => getStorageValue(STORAGE_KEY),
+    () => null, // Server snapshot
   );
 
-  const animationShown = useSyncExternalStore(
+  const animationShownStr = useSyncExternalStore(
     subscribe,
-    () => getStorageValue(ANIMATION_SHOWN_KEY) === "true",
-    () => true, // Server snapshot - don't show animation during SSR
+    () => getStorageValue(ANIMATION_SHOWN_KEY),
+    () => null, // Server snapshot
   );
 
-  const [localIsFirstVisit, setLocalIsFirstVisit] = useState(!hasVisited);
-  const [localShowAnimation, setLocalShowAnimation] = useState(
-    !animationShown && !hasVisited,
-  );
+  const [isClient, setIsClient] = useState(false);
 
-  const isFirstVisit = localIsFirstVisit && !hasVisited;
-  const showWelcomeAnimation = localShowAnimation && !animationShown;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Determine if animation should be shown based on timestamp and cooldown
+  let shouldShowAnimation = false;
+  let isFirstVisit = false;
+
+  if (isClient) {
+    // If no record exists, it's a first visit
+    if (!hasVisitedStr) {
+      isFirstVisit = true;
+    }
+
+    if (!animationShownStr) {
+      // Never shown before
+      shouldShowAnimation = true;
+    } else {
+      // Parse the timestamp it was last shown
+      const lastShownTimestamp = parseInt(animationShownStr, 10);
+      if (!isNaN(lastShownTimestamp)) {
+        const now = Date.now();
+        // If 7 days have passed, show it again
+        if (now - lastShownTimestamp > COOLDOWN_MS) {
+          shouldShowAnimation = true;
+        }
+      } else {
+        // Fallback for old "true" string value (pre-feature fix)
+        // Treat as if we need to show it again to reset to a proper timestamp
+        shouldShowAnimation = true;
+      }
+    }
+  }
 
   const markAsVisited = useCallback(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, "true");
-      setLocalIsFirstVisit(false);
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
     } catch (error) {
       console.warn("Could not save visit status:", error);
     }
@@ -70,10 +100,11 @@ export function useFirstVisit(): UseFirstVisitReturn {
 
   const dismissWelcomeAnimation = useCallback(() => {
     try {
-      localStorage.setItem(ANIMATION_SHOWN_KEY, "true");
-      localStorage.setItem(STORAGE_KEY, "true");
-      setLocalShowAnimation(false);
-      setLocalIsFirstVisit(false);
+      const now = Date.now().toString();
+      localStorage.setItem(ANIMATION_SHOWN_KEY, now);
+      localStorage.setItem(STORAGE_KEY, now);
+      // Force a re-render by dispatching a storage event
+      window.dispatchEvent(new Event("storage"));
     } catch (error) {
       console.warn("Could not save animation status:", error);
     }
@@ -83,8 +114,8 @@ export function useFirstVisit(): UseFirstVisitReturn {
     try {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(ANIMATION_SHOWN_KEY);
-      setLocalIsFirstVisit(true);
-      setLocalShowAnimation(true);
+      // Force a re-render by dispatching a storage event
+      window.dispatchEvent(new Event("storage"));
     } catch (error) {
       console.warn("Could not reset visit status:", error);
     }
@@ -92,10 +123,10 @@ export function useFirstVisit(): UseFirstVisitReturn {
 
   return {
     isFirstVisit,
-    isLoading: false, // No longer needed with useSyncExternalStore
+    isLoading: !isClient,
     markAsVisited,
     resetVisitStatus,
-    showWelcomeAnimation,
+    showWelcomeAnimation: shouldShowAnimation,
     dismissWelcomeAnimation,
   };
 }

@@ -15,6 +15,7 @@ import {
   getAnalyticsSummary,
   getProductAnalytics,
   getConversionMetrics,
+  getRecentEvents,
 } from "@/lib/analytics";
 
 // POST /api/analytics - Track event (public)
@@ -85,6 +86,10 @@ export async function GET(request: NextRequest) {
 
       case "conversions":
         data = await getConversionMetrics(days);
+        break;
+
+      case "recent":
+        data = await getRecentEvents(10);
         break;
 
       default:

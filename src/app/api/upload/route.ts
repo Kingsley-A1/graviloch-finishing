@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
-    const folder = formData.get("folder") as "products" | "gallery" | "reviews" | null;
+    const folder = formData.get("folder") as "products" | "gallery" | "reviews" | "samples" | null;
 
     if (!file) {
       return NextResponse.json(
@@ -40,9 +40,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!folder || !["products", "gallery", "reviews"].includes(folder)) {
+    if (!folder || !["products", "gallery", "reviews", "samples"].includes(folder)) {
       return NextResponse.json(
-        { success: false, error: "Invalid folder. Must be: products, gallery, or reviews" },
+        { success: false, error: "Invalid folder. Must be: products, gallery, reviews, or samples" },
         { status: 400 }
       );
     }
@@ -121,7 +121,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const filename = searchParams.get("filename");
     const contentType = searchParams.get("contentType");
-    const folder = searchParams.get("folder") as "products" | "gallery" | "reviews" | null;
+    const folder = searchParams.get("folder") as "products" | "gallery" | "reviews" | "samples" | null;
 
     if (!filename || !contentType || !folder) {
       return NextResponse.json(
@@ -133,9 +133,9 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    if (!["products", "gallery", "reviews"].includes(folder)) {
+    if (!["products", "gallery", "reviews", "samples"].includes(folder)) {
       return NextResponse.json(
-        { success: false, error: "Invalid folder. Must be: products, gallery, or reviews" },
+        { success: false, error: "Invalid folder. Must be: products, gallery, reviews, or samples" },
         { status: 400 }
       );
     }

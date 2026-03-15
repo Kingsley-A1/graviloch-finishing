@@ -41,7 +41,7 @@ export default function ProductModal({
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
       venetian: "Venetian Plaster",
-      marmorino: "Marmorino",
+      stucco: "Stucco",
       travertino: "Travertino",
       metallic: "Metallic Finishes",
       "liquid-metal": "Liquid Metal",

@@ -13,7 +13,7 @@ import styles from "./FilterBar.module.css";
 const categories = [
   { value: "", label: "All Categories" },
   { value: "venetian", label: "Venetian Plaster" },
-  { value: "marmorino", label: "Marmorino" },
+  { value: "stucco", label: "Stucco" },
   { value: "travertino", label: "Travertino" },
   { value: "metallic", label: "Metallic Finishes" },
   { value: "liquid-metal", label: "Liquid Metal" },

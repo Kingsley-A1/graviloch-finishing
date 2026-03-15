@@ -36,12 +36,12 @@ export const metadata: Metadata = {
     template: "%s | GRAVILOCH FINISHINGS LTD",
   },
   description:
-    "Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint in Nigeria. Stucco Veneziano, Marmorino, Travertino, Metallika, Microcemento and more. Port Harcourt • Lagos • Abuja • Calabar • Uyo.",
+    "Sole distributors and Technical Applicators of Nikkolor Italian Decorative Paint in Nigeria. Stucco Veneziano, Stucco, Travertino, Metallika, Microcemento and more. Port Harcourt • Lagos • Abuja • Calabar • Uyo.",
   keywords: [
     "Italian painting",
     "Nikkolor paint",
     "Stucco Veneziano",
-    "Stucco Marmorino",
+    "Stucco Stucco",
     "Travertino",
     "Metallika finishes",
     "Microcemento",
@@ -84,14 +84,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
     description:
-      "Sole distributors of Nikkolor Italian Decorative Paint. Stucco Veneziano, Marmorino, Travertino, Metallika finishes.",
+      "Sole distributors of Nikkolor Italian Decorative Paint. Stucco Veneziano, Stucco, Travertino, Metallika finishes.",
     images: ["/og-image.png"],
     creator: "@graviloch",
   },
   icons: {
     icon: [
       { url: "/icons/logo.png", sizes: "any", type: "image/png" },
+      { url: "/icons/logo.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/logo.png", sizes: "16x16", type: "image/png" },
     ],
+    shortcut: [{ url: "/icons/logo.png" }],
     apple: [
       { url: "/icons/logo.png", sizes: "180x180", type: "image/png" },
     ],

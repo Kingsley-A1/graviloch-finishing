@@ -46,7 +46,7 @@ export const MAX_FILE_SIZE = 10 * 1024 * 1024;
  */
 export function generateUniqueFilename(
   originalName: string,
-  folder: "products" | "gallery" | "reviews"
+  folder: "products" | "gallery" | "reviews" | "samples"
 ): string {
   const timestamp = Date.now();
   const randomStr = Math.random().toString(36).substring(2, 8);

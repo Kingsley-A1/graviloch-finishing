@@ -19,9 +19,11 @@ const navLinks = [
   { href: "/colours", label: "Colours" },
   { href: "/shop", label: "Shop" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/samples", label: "Samples" },
   { href: "/testimonials", label: "Reviews" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+  { href: "/documentation", label: "Documentation" },
 ];
 
 export default function Header() {

@@ -88,7 +88,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
       venetian: "Venetian",
-      marmorino: "Marmorino",
+      stucco: "Stucco",
       travertino: "Travertino",
       metallic: "Metallic",
       "liquid-metal": "Liquid Metal",

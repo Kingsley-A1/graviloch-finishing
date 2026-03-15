@@ -6,6 +6,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./StorySection.module.css";
 
@@ -27,10 +28,10 @@ export default function StorySection() {
               Passion Meets <span className="text-gradient">Precision</span>
             </h2>
             <p className={styles.text}>
-              GRAVILOCH FINISHINGS <span className="text-red">LTD</span> was born from a deep passion for Italian
-              decorative arts. As the sole distributors of Nikkolor Italian
-              Decorative Paint in Nigeria, we bring authentic European finishes
-              to transform Nigerian spaces.
+              GRAVILOCH FINISHINGS <span className="text-red">LTD</span> was
+              born from a deep passion for Italian decorative arts. As the sole
+              distributors of Nikkolor Italian Decorative Paint in Nigeria, we
+              bring authentic European finishes to transform Nigerian spaces.
             </p>
             <p className={styles.text}>
               Under the leadership of Mr. Christian N. Ugwu, our team of skilled
@@ -45,88 +46,54 @@ export default function StorySection() {
             </p>
           </motion.div>
 
-          {/* Values */}
+          {/* Image Gallery */}
           <motion.div
-            className={styles.values}
+            className={styles.imageGallery}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {values.map((value) => (
-              <div key={value.title} className={styles.valueCard}>
-                <div className={styles.valueIcon}>{value.icon}</div>
-                <div className={styles.valueContent}>
-                  <h3 className={styles.valueTitle}>{value.title}</h3>
-                  <p className={styles.valueText}>{value.description}</p>
-                </div>
-              </div>
-            ))}
+            <div className={styles.imageCard}>
+              <Image
+                src="/images/gallery/master-craftman.jpg"
+                alt="Master Craftsman"
+                fill
+                className={styles.image}
+                style={{ objectPosition: "top center" }}
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
+            <div className={styles.imageCard}>
+              <Image
+                src="/images/gallery/team-at-work.webp"
+                alt="Team at Work"
+                fill
+                className={styles.image}
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
+            <div className={styles.imageCard}>
+              <Image
+                src="/images/gallery/paint-craftsmanship.webp"
+                alt="Paint Craftsmanship"
+                fill
+                className={styles.image}
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
+            <div className={styles.imageCard}>
+              <Image
+                src="/images/gallery/finished_work.jpg"
+                alt="Finished Work"
+                fill
+                className={styles.image}
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
-
-const values = [
-  {
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-    title: "Authenticity",
-    description: "Genuine Italian techniques passed down through generations.",
-  },
-  {
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-      </svg>
-    ),
-    title: "Excellence",
-    description: "We settle for nothing less than perfection in every project.",
-  },
-  {
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12,6 12,12 16,14" />
-      </svg>
-    ),
-    title: "Dedication",
-    description: "Your timeline and satisfaction are our top priorities.",
-  },
-  {
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      >
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-      </svg>
-    ),
-    title: "Passion",
-    description: "Every stroke is made with love for our craft.",
-  },
-];

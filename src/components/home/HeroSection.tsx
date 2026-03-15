@@ -15,18 +15,18 @@ import styles from "./HeroSection.module.css";
 
 const heroSlides = [
   {
-    image: "/images/hero/venetian-living-room.webp",
-    title: "Transform Your Space",
-    subtitle: "with Italian Elegance",
+    image: "/images/hero/hero-white-stucco-bedroom.png",
+    title: "Brilliant White Stucco",
+    subtitle: "Master Craftsmanship",
     description:
-      "Premium Venetian plaster finishes that bring timeless beauty to any room.",
+      "Transforming spacious interiors with pure, dazzling white stucco finishes.",
   },
   {
-    image: "/images/hero/marmorino-dining.webp",
+    image: "/images/hero/stucco-dining.webp",
     title: "Artisan Craftsmanship",
     subtitle: "in Every Stroke",
     description:
-      "Authentic Marmorino techniques passed down through generations.",
+      "Authentic Stucco techniques passed down through generations.",
   },
   {
     image: "/images/hero/metallic-finish-lobby.webp",
@@ -36,10 +36,10 @@ const heroSlides = [
       "Stunning metallic and decorative effects for statement walls.",
   },
   {
-    image: "/images/hero/travertino-office.webp",
-    title: "Natural Beauty",
-    subtitle: "Reimagined",
-    description: "Travertino finishes that bring the essence of Italian stone.",
+    image: "/images/hero/hero-sharp-modern.png",
+    title: "Executive Modern UI",
+    subtitle: "Premium Finishes",
+    description: "Sharp, luxurious textures designed for modern living spaces.",
   },
 ];
 
@@ -49,9 +49,24 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
+    }, 3000); // 2 seconds faster than before (5000ms -> 3000ms)
     return () => clearInterval(timer);
   }, []);
+
+  // Handle swipe gestures
+  const handleDragEnd = (event: any, info: any) => {
+    // Threshold for swipe detection
+    const swipeOffset = 50;
+    if (info.offset.x < -swipeOffset) {
+      // Swiped left, go to next
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    } else if (info.offset.x > swipeOffset) {
+      // Swiped right, go to previous
+      setCurrentSlide((prev) =>
+        prev === 0 ? heroSlides.length - 1 : prev - 1
+      );
+    }
+  };
 
   return (
     <section className={styles.hero}>
@@ -89,6 +104,11 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.6 }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            style={{ touchAction: "none" }} // Prevent vertical scroll while swiping
           >
             <h1 className={styles.title}>
               {heroSlides[currentSlide].title}

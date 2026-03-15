@@ -135,7 +135,8 @@
 @media (min-width: 768px) {
   .container {
     flex-direction: row;
-    justify-content: space-between;
+    position: relative;
+    justify-content: center;
     align-items: center;
     padding: 1.5rem 0;
   }
@@ -143,5 +144,11 @@
   .tabs {
     flex-wrap: wrap;
     overflow: visible;
+    justify-content: center;
+  }
+
+  .sort {
+    position: absolute;
+    right: 0;
   }
 }

@@ -111,7 +111,7 @@ export default function MobileNav({
             Get a Free Quote
           </Link>
           <a
-            href={`https://wa.me/2349036826272`}
+            href={`https://wa.me/2348035070793`}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.whatsappButton}

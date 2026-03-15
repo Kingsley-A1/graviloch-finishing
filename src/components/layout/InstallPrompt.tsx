@@ -113,7 +113,7 @@ export default function InstallPrompt() {
             </div>
             <div className={styles.headerText}>
               <h3 className={styles.title}>
-                GRAVILOCH <span className={styles.ltd}>LTD</span>
+                GRAVILOCH FINISHINGS <span className={styles.ltd}>LTD</span>
               </h3>
               <p className={styles.subtitle}>Install our app for quick access</p>
             </div>

@@ -14,7 +14,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Browse our collection of premium Italian painting products. Venetian plaster, Marmorino, Travertino, metallic finishes, and professional tools.",
+    "Browse our collection of premium Italian painting products. Venetian plaster, Stucco, Travertino, metallic finishes, and professional tools.",
   openGraph: {
     title: "Shop | GRAVILOCH FINISHING",
     description:

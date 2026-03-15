@@ -14,7 +14,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Explore our portfolio of stunning Italian painting finishes. Venetian plaster, Marmorino, metallic effects, and more.",
+    "Explore our portfolio of stunning Italian painting finishes. Venetian plaster, Stucco, metallic effects, and more.",
   openGraph: {
     title: "Gallery | GRAVILOCH FINISHING",
     description:
@@ -62,6 +62,33 @@ export default async function GalleryPage({ searchParams }: GalleryPageProps) {
           <Suspense fallback={<PageLoader />}>
             <GalleryGrid category={params.category} sort={params.sort} />
           </Suspense>
+        </div>
+      </section>
+
+      {/* Finished Work Videos Section */}
+      <section className={styles.videoSection}>
+        <div className={styles.container}>
+          <div className={styles.videoHeader}>
+            <h2 className={styles.videoTitle}>
+              Finished <span className="text-gold">Work Videos</span>
+            </h2>
+            <p className={styles.videoSubtitle}>
+              Experience our craftsmanship in motion.
+            </p>
+          </div>
+          <div className={styles.videoGrid}>
+            <div className={styles.videoWrapper}>
+              <video
+                src="/Castle-finished-work.mp4"
+                controls
+                preload="metadata"
+                className={styles.videoPlayer}
+                poster="/images/gallery/finished_work.jpg"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
         </div>
       </section>
     </div>

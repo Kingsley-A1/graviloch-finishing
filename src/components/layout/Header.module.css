@@ -7,13 +7,18 @@
   right: 0;
   z-index: 100;
   transition: all 0.3s ease;
+  background: transparent;
 }
 
 .header.scrolled {
-  background: rgba(13, 13, 13, 0.85);
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.85) 0%,
+    rgba(4, 120, 87, 0.9) 100%
+  );
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -24,6 +29,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
+  position: relative;
 }
 
 /* Logo */
@@ -100,17 +106,18 @@
   padding: 0.5rem 1rem;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--obsidian-300);
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   transition: color 0.2s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .navLink:hover {
-  color: var(--foreground);
+  color: #ffffff;
 }
 
 .navLink.active {
-  color: var(--foreground);
+  color: #ffffff;
 }
 
 .activeIndicator {
@@ -192,6 +199,9 @@
 
   .nav {
     display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .ctaButton {
