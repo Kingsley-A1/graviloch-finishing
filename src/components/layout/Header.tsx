@@ -47,10 +47,8 @@ export default function Header() {
     closeNav();
   }, [pathname]);
 
-  // Hide the public header on admin routes to avoid overlap with admin chrome
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
+  // Removed the early return for admin so it shows on all routes
+  // The header now appears on admin routes as well
 
   return (
     <>
@@ -65,7 +63,7 @@ export default function Header() {
           <Link href="/" className={styles.logo}>
             <div className={styles.logoImageWrapper}>
               <Image
-                src="/icons/logo.png"
+                src="/icons/logo.png?v=2"
                 alt="GRAVILOCH FINISHINGS LTD"
                 width={44}
                 height={44}

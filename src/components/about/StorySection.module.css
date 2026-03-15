@@ -69,10 +69,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Master craftsman card — taller so head is always visible */
-.imageCard:first-child {
-  grid-row: span 2;
-}
+/* Master craftsman card removed span to make equal size */
 
 .imageCard:hover {
   transform: translateY(-5px);

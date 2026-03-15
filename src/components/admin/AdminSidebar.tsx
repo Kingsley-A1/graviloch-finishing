@@ -202,7 +202,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
             {/* Logo */}
             <div className={styles.logo}>
               <Image
-                src="/icons/logo.png"
+                src="/icons/logo.png?v=2"
                 alt="GRAVILOCH"
                 width={40}
                 height={40}

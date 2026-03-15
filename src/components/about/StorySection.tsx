@@ -60,7 +60,7 @@ export default function StorySection() {
                 alt="Master Craftsman"
                 fill
                 className={styles.image}
-                style={{ objectPosition: "top center" }}
+                style={{ objectPosition: "center 15%" }}
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
             </div>

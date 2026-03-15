@@ -81,6 +81,8 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
 }
 
 .description {
