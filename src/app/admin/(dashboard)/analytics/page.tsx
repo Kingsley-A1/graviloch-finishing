@@ -75,7 +75,7 @@ export default function AdminAnalyticsPage() {
     ],
     topProducts: [
       { name: "Venetian Plaster Premium", views: 856, inquiries: 24 },
-      { name: "Marmorino Classic", views: 742, inquiries: 18 },
+      { name: "Stucco Classic", views: 742, inquiries: 18 },
       { name: "Stucco Veneziano", views: 623, inquiries: 15 },
       { name: "Lime Paint Natural", views: 534, inquiries: 12 },
       { name: "Decorative Wax", views: 412, inquiries: 8 },

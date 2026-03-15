@@ -16,7 +16,7 @@ interface Product {
   price: number;
   description?: string;
   imageUrl?: string;
-  featured: boolean;
+  inStock?: boolean;
 }
 
 interface ProductFormModalProps {
@@ -27,7 +27,7 @@ interface ProductFormModalProps {
 
 const categories = [
   { value: "venetian", label: "Venetian Plaster" },
-  { value: "marmorino", label: "Marmorino" },
+  { value: "stucco", label: "Stucco" },
   { value: "travertino", label: "Travertino" },
   { value: "metallic", label: "Metallic Finishes" },
   { value: "liquid-metal", label: "Liquid Metal" },
@@ -47,7 +47,7 @@ export default function ProductFormModal({
     category: product?.category || categories[0].value,
     price: product?.price?.toString() || "",
     description: product?.description || "",
-    featured: product?.featured || false,
+    inStock: product?.inStock !== false,
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -103,7 +103,9 @@ export default function ProductFormModal({
 
       // Create/Update product
       const productData = {
-        ...formData,
+        name: formData.name,
+        category: formData.category,
+        inStock: formData.inStock,
         description,
         price: priceValue,
         imageUrl,
@@ -121,7 +123,11 @@ export default function ProductFormModal({
       if (res.ok) {
         onSave();
       } else {
-        alert("Failed to save product");
+        const errData = await res.json().catch(() => ({}));
+        const detail = errData?.details
+          ? Object.entries(errData.details).map(([k, v]) => `${k}: ${(v as string[]).join(", ")}`).join("\n")
+          : errData?.error || "Failed to save product";
+        alert(detail);
       }
     } catch (error) {
       console.error("Save failed:", error);
@@ -194,13 +200,13 @@ export default function ProductFormModal({
         <div className={styles.checkboxField}>
           <input
             type="checkbox"
-            id="featured"
-            checked={formData.featured}
+            id="inStock"
+            checked={formData.inStock}
             onChange={(e) =>
-              setFormData({ ...formData, featured: e.target.checked })
+              setFormData({ ...formData, inStock: e.target.checked })
             }
           />
-          <label htmlFor="featured">Featured Product</label>
+          <label htmlFor="inStock">In Stock</label>
         </div>
 
         <div className={styles.actions}>

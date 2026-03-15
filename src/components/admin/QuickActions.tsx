@@ -76,6 +76,25 @@ const actions = [
     ),
     color: "default",
   },
+  {
+    href: "/admin/samples?action=add",
+    label: "Add Sample",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+        <line x1="12" y1="8" x2="12" y2="13" />
+        <line x1="9.5" y1="10.5" x2="14.5" y2="10.5" />
+      </svg>
+    ),
+    color: "default",
+  },
 ];
 
 export default function QuickActions() {

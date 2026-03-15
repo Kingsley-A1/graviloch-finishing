@@ -19,6 +19,7 @@ export default function AdminRegisterPage() {
   const router = useRouter();
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [showCode, setShowCode] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -125,16 +126,38 @@ export default function AdminRegisterPage() {
             required
           />
 
-          <Input
-            label="Registration Code"
-            name="registrationCode"
-            type="password"
-            value={formData.registrationCode}
-            onChange={handleChange}
-            error={errors.registrationCode}
-            placeholder="Enter admin registration code"
-            required
-          />
+          <div className={styles.passwordWrapper}>
+            <Input
+              label="Registration Code"
+              name="registrationCode"
+              type={showCode ? "text" : "password"}
+              value={formData.registrationCode}
+              onChange={handleChange}
+              error={errors.registrationCode}
+              placeholder="Enter admin registration code"
+              required
+              style={{ paddingRight: "3rem" }}
+            />
+            <button
+              type="button"
+              className={styles.eyeToggle}
+              onClick={() => setShowCode((v) => !v)}
+              aria-label={showCode ? "Hide code" : "Show code"}
+            >
+              {showCode ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              )}
+            </button>
+          </div>
 
           <div className={styles.infoBox}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

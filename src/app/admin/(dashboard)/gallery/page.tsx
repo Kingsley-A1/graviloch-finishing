@@ -9,6 +9,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Button, Modal } from "@/components/ui";
+import { useToast } from "@/components/ui/Toast";
 import styles from "./page.module.css";
 
 interface GalleryImage {
@@ -23,7 +24,7 @@ interface GalleryImage {
 const categories = [
   "All",
   "Venetian Plaster",
-  "Marmorino",
+  "Stucco",
   "Stucco",
   "Custom Projects",
   "Exterior Work",
@@ -42,6 +43,8 @@ export default function AdminGalleryPage() {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
+  const { showToast } = useToast();
+
   const fetchImages = useCallback(async () => {
     try {
       const res = await fetch("/api/gallery");
@@ -51,10 +54,11 @@ export default function AdminGalleryPage() {
       }
     } catch (error) {
       console.error("Failed to fetch gallery:", error);
+      showToast("Failed to fetch images", "error");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [showToast]);
 
   useEffect(() => {
     fetchImages();
@@ -70,9 +74,14 @@ export default function AdminGalleryPage() {
       const res = await fetch(`/api/gallery/${id}`, { method: "DELETE" });
       if (res.ok) {
         setImages((prev) => prev.filter((img) => img.id !== id));
+        showToast("Image deleted successfully", "success");
+      } else {
+        const data = await res.json();
+        showToast(data.error || "Delete failed", "error");
       }
     } catch (error) {
       console.error("Delete failed:", error);
+      showToast("Delete failed", "error");
     }
   };
 
@@ -92,9 +101,12 @@ export default function AdminGalleryPage() {
         body: formData,
       });
 
-      if (!uploadRes.ok) throw new Error("Upload failed");
+      const uploadData = await uploadRes.json();
+      if (!uploadRes.ok || !uploadData.success) {
+        throw new Error(uploadData.error || "Upload failed");
+      }
 
-      const { url } = await uploadRes.json();
+      const url = uploadData.data.url;
 
       // Create gallery entry
       const res = await fetch("/api/gallery", {
@@ -114,11 +126,15 @@ export default function AdminGalleryPage() {
           featured: false,
         });
         setUploadFile(null);
+        showToast("Image uploaded successfully", "success");
         fetchImages();
+      } else {
+        const errData = await res.json();
+        showToast(errData.error || "Failed to save image entry", "error");
       }
     } catch (error) {
       console.error("Upload failed:", error);
-      alert("Upload failed. Please try again.");
+      showToast(error instanceof Error ? error.message : "Upload failed. Please try again.", "error");
     } finally {
       setUploading(false);
     }

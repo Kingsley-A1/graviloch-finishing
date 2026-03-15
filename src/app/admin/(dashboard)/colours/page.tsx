@@ -137,11 +137,18 @@ export default function AdminColoursPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedColour, setSelectedColour] = useState<Colour | null>(null);
 
+  // Local editable copy of colour data
+  const [localColourData, setLocalColourData] = useState(colourData);
+
+  // Edit modal state
+  const [editingColour, setEditingColour] = useState<(Colour & { family: string }) | null>(null);
+  const [editForm, setEditForm] = useState({ name: "", hex: "" });
+
   const allColours = useMemo(() => {
-    return Object.entries(colourData).flatMap(([family, colours]) =>
+    return Object.entries(localColourData).flatMap(([family, colours]) =>
       colours.map((c) => ({ ...c, family })),
     );
-  }, []);
+  }, [localColourData]);
 
   const filteredColours = useMemo(() => {
     let colours = allColours;
@@ -166,12 +173,51 @@ export default function AdminColoursPage() {
   const stats = useMemo(
     () => ({
       total: allColours.length,
-      families: Object.keys(colourData).length,
+      families: Object.keys(localColourData).length,
       mostPopular: "Alabaster White",
       newest: "Champagne Gold",
     }),
-    [allColours],
+    [allColours, localColourData],
   );
+
+  const openEditModal = (colour: Colour & { family: string }, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingColour(colour);
+    setEditForm({ name: colour.name, hex: colour.hex });
+  };
+
+  const handleEditSave = () => {
+    if (!editingColour) return;
+    const hexPattern = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
+    if (!hexPattern.test(editForm.hex)) {
+      alert("Please enter a valid hex colour (e.g. #FF5733)");
+      return;
+    }
+    const family = editingColour.family as keyof typeof localColourData;
+    setLocalColourData((prev) => ({
+      ...prev,
+      [family]: prev[family].map((c) =>
+        c.id === editingColour.id
+          ? { ...c, name: editForm.name.trim(), hex: editForm.hex.toUpperCase() }
+          : c,
+      ),
+    }));
+    if (selectedColour?.id === editingColour.id) {
+      setSelectedColour((prev) => prev ? { ...prev, name: editForm.name.trim(), hex: editForm.hex.toUpperCase() } : null);
+    }
+    setEditingColour(null);
+  };
+
+  const handleDelete = (colour: Colour & { family: string }, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!window.confirm(`Delete "${colour.name}"?`)) return;
+    const family = colour.family as keyof typeof localColourData;
+    setLocalColourData((prev) => ({
+      ...prev,
+      [family]: prev[family].filter((c) => c.id !== colour.id),
+    }));
+    if (selectedColour?.id === colour.id) setSelectedColour(null);
+  };
 
   return (
     <div className={styles.page}>
@@ -354,7 +400,11 @@ export default function AdminColoursPage() {
                 </div>
               </div>
               <div className={styles.colourActions}>
-                <button className={styles.actionBtn} title="Edit">
+                <button
+                  className={styles.actionBtn}
+                  title="Edit"
+                  onClick={(e) => openEditModal(colour, e)}
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -365,7 +415,11 @@ export default function AdminColoursPage() {
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                   </svg>
                 </button>
-                <button className={styles.actionBtn} title="Delete">
+                <button
+                  className={styles.actionBtn}
+                  title="Delete"
+                  onClick={(e) => handleDelete(colour, e)}
+                >
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -423,11 +477,88 @@ export default function AdminColoursPage() {
               </div>
             </div>
             <div className={styles.previewActions}>
-              <button className={styles.editBtn}>Edit Colour</button>
-              <button className={styles.deleteBtn}>Delete</button>
+              <button
+                className={styles.editBtn}
+                onClick={(e) => {
+                  const colourWithFamily = allColours.find((c) => c.id === selectedColour.id);
+                  if (colourWithFamily) openEditModal(colourWithFamily, e);
+                }}
+              >
+                Edit Colour
+              </button>
+              <button
+                className={styles.deleteBtn}
+                onClick={(e) => {
+                  const colourWithFamily = allColours.find((c) => c.id === selectedColour.id);
+                  if (colourWithFamily) handleDelete(colourWithFamily, e);
+                }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </motion.div>
+      )}
+
+      {/* Edit Colour Modal */}
+      {editingColour && (
+        <div className={styles.modalOverlay} onClick={() => setEditingColour(null)}>
+          <div className={styles.editModal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.editModalHeader}>
+              <h3 className={styles.editModalTitle}>Edit Colour</h3>
+              <button className={styles.closeModal} onClick={() => setEditingColour(null)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className={styles.editModalBody}>
+              <div
+                className={styles.editPreviewSwatch}
+                style={{ backgroundColor: editForm.hex }}
+              />
+              <div className={styles.editField}>
+                <label className={styles.editLabel}>Colour Name</label>
+                <input
+                  className={styles.editInput}
+                  type="text"
+                  value={editForm.name}
+                  onChange={(e) => setEditForm((f) => ({ ...f, name: e.target.value }))}
+                  placeholder="e.g. Tuscan Terracotta"
+                />
+              </div>
+              <div className={styles.editField}>
+                <label className={styles.editLabel}>Hex Value</label>
+                <div className={styles.hexInputWrapper}>
+                  <input
+                    className={styles.editColor}
+                    type="color"
+                    value={editForm.hex}
+                    onChange={(e) =>
+                      setEditForm((f) => ({ ...f, hex: e.target.value.toUpperCase() }))
+                    }
+                  />
+                  <input
+                    className={styles.editInput}
+                    type="text"
+                    value={editForm.hex}
+                    onChange={(e) => setEditForm((f) => ({ ...f, hex: e.target.value }))}
+                    placeholder="#CC6B49"
+                    maxLength={7}
+                  />
+                </div>
+              </div>
+              <div className={styles.editModalFooter}>
+                <button className={styles.cancelBtn} onClick={() => setEditingColour(null)}>
+                  Cancel
+                </button>
+                <button className={styles.saveBtn} onClick={handleEditSave}>
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

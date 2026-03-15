@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     // Parse query parameters
     const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const limit = Math.min(50, Math.max(1, parseInt(searchParams.get("limit") || "12")));
+    const limit = Math.min(200, Math.max(1, parseInt(searchParams.get("limit") || "12")));
     const category = searchParams.get("category") as ProductFilters["category"];
     const inStock = searchParams.get("inStock");
     const minPrice = searchParams.get("minPrice");

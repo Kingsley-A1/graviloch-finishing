@@ -19,7 +19,7 @@ interface Product {
   price: number;
   description?: string;
   imageUrl?: string;
-  featured: boolean;
+  inStock: boolean;
   createdAt: string;
 }
 
@@ -31,7 +31,7 @@ export default function AdminProductsPage() {
 
   const fetchProducts = useCallback(async () => {
     try {
-      const res = await fetch("/api/products");
+      const res = await fetch("/api/products?limit=100");
       const data = await res.json();
       if (data.success) {
         setProducts(data.data);
@@ -87,11 +87,11 @@ export default function AdminProductsPage() {
       render: (row: Product) => `₦${row.price.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     },
     {
-      key: "featured",
-      label: "Featured",
+      key: "inStock",
+      label: "Stock",
       render: (row: Product) => (
-        <span className={row.featured ? styles.badge : styles.badgeMuted}>
-          {row.featured ? "Yes" : "No"}
+        <span className={row.inStock ? styles.badge : styles.badgeMuted}>
+          {row.inStock ? "In Stock" : "Out of Stock"}
         </span>
       ),
     },

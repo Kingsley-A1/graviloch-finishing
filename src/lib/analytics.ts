@@ -96,55 +96,70 @@ export async function getAnalyticsSummary(days: number = 30) {
   startDate.setDate(startDate.getDate() - days);
 
   try {
-    // Total page views
-    const totalViews = await prisma.analytics.count({
-      where: {
-        event: "page_view",
-        createdAt: { gte: startDate },
-      },
-    });
-
-    // Unique visitors (by IP hash)
-    const uniqueVisitors = await prisma.analytics.groupBy({
-      by: ["ipHash"],
-      where: {
-        event: "page_view",
-        createdAt: { gte: startDate },
-        ipHash: { not: null },
-      },
-    });
-
-    // Events breakdown
-    const eventBreakdown = await prisma.analytics.groupBy({
-      by: ["event"],
-      where: { createdAt: { gte: startDate } },
-      _count: { event: true },
-    });
-
-    // Top pages
-    const topPages = await prisma.analytics.groupBy({
-      by: ["page"],
-      where: {
-        event: "page_view",
-        createdAt: { gte: startDate },
-      },
-      _count: { page: true },
-      orderBy: { _count: { page: "desc" } },
-      take: 10,
-    });
-
-    // Daily views for chart
-    const dailyViews = await prisma.$queryRaw<Array<DailyView>>`
-      SELECT DATE("createdAt") as date, COUNT(*) as count
-      FROM "Analytics"
-      WHERE event = 'page_view' AND "createdAt" >= ${startDate}
-      GROUP BY DATE("createdAt")
-      ORDER BY date ASC
-    `;
+    const [
+      totalViews,
+      uniqueVisitors,
+      eventBreakdown,
+      topPages,
+      dailyViews,
+      totalProducts,
+      totalGalleryImages,
+      totalReviews,
+      pendingReviews,
+      totalSamples,
+    ] = await Promise.all([
+      // Total page views
+      prisma.analytics.count({
+        where: { event: "page_view", createdAt: { gte: startDate } },
+      }),
+      // Unique visitors (by IP hash)
+      prisma.analytics.groupBy({
+        by: ["ipHash"],
+        where: {
+          event: "page_view",
+          createdAt: { gte: startDate },
+          ipHash: { not: null },
+        },
+      }),
+      // Events breakdown
+      prisma.analytics.groupBy({
+        by: ["event"],
+        where: { createdAt: { gte: startDate } },
+        _count: { event: true },
+      }),
+      // Top pages
+      prisma.analytics.groupBy({
+        by: ["page"],
+        where: { event: "page_view", createdAt: { gte: startDate } },
+        _count: { page: true },
+        orderBy: { _count: { page: "desc" } },
+        take: 10,
+      }),
+      // Daily views
+      prisma.$queryRaw<Array<DailyView>>`
+        SELECT DATE("createdAt") as date, COUNT(*) as count
+        FROM "Analytics"
+        WHERE event = 'page_view' AND "createdAt" >= ${startDate}
+        GROUP BY DATE("createdAt")
+        ORDER BY date ASC
+      `,
+      // Entity counts for dashboard cards
+      prisma.product.count(),
+      prisma.galleryImage.count(),
+      prisma.review.count(),
+      prisma.review.count({ where: { approved: false } }),
+      // Samples count
+      prisma.sample.count(),
+    ]);
 
     return {
       totalViews,
       uniqueVisitors: uniqueVisitors.length,
+      totalProducts,
+      totalGalleryImages,
+      totalReviews,
+      pendingReviews,
+      totalSamples,
       eventBreakdown: eventBreakdown.map((e: GroupByEventCount) => ({
         event: e.event,
         count: e._count.event,
@@ -163,6 +178,86 @@ export async function getAnalyticsSummary(days: number = 30) {
     throw error;
   }
 }
+
+/**
+ * Get recent activity events for the dashboard feed
+ */
+export async function getRecentEvents(limit: number = 8) {
+  try {
+    const events = await prisma.analytics.findMany({
+      orderBy: { createdAt: "desc" },
+      take: limit,
+      select: { id: true, event: true, page: true, productId: true, createdAt: true },
+    });
+
+    // Resolve product names for product events
+    const productIds = [...new Set(events.map((e) => e.productId).filter(Boolean) as string[])];
+    const products =
+      productIds.length > 0
+        ? await prisma.product.findMany({
+            where: { id: { in: productIds } },
+            select: { id: true, name: true },
+          })
+        : [];
+    const productMap = new Map(products.map((p) => [p.id, p.name]));
+
+    const eventLabels: Record<string, string> = {
+      page_view: "Page visited",
+      product_view: "Product viewed",
+      product_like: "Product liked",
+      product_share: "Product shared",
+      product_contact: "Product enquiry",
+      gallery_view: "Gallery viewed",
+      gallery_like: "Gallery image liked",
+      gallery_share: "Gallery image shared",
+      review_submit: "New review submitted",
+      contact_form: "New contact enquiry",
+      whatsapp_click: "WhatsApp contact",
+      store_visit: "Store location viewed",
+      first_visit: "First-time visitor",
+    };
+
+    const typeMap: Record<string, string> = {
+      page_view: "page",
+      product_view: "product",
+      product_like: "product",
+      product_share: "product",
+      product_contact: "contact",
+      gallery_view: "gallery",
+      gallery_like: "gallery",
+      gallery_share: "gallery",
+      review_submit: "review",
+      contact_form: "contact",
+      whatsapp_click: "contact",
+      store_visit: "page",
+      first_visit: "page",
+    };
+
+    return events.map((e) => {
+      const productName = e.productId ? productMap.get(e.productId) : null;
+      const label = eventLabels[e.event] || e.event.replace(/_/g, " ");
+      const message = productName ? `${label}: ${productName}` : label;
+      const now = new Date();
+      const diff = now.getTime() - new Date(e.createdAt).getTime();
+      const mins = Math.floor(diff / 60000);
+      const hrs = Math.floor(mins / 60);
+      const days = Math.floor(hrs / 24);
+      const time =
+        days > 0 ? `${days}d ago` : hrs > 0 ? `${hrs}h ago` : mins > 0 ? `${mins}m ago` : "Just now";
+
+      return {
+        id: e.id,
+        type: typeMap[e.event] || "page",
+        message,
+        time,
+      };
+    });
+  } catch (error) {
+    console.error("Recent events error:", error);
+    return [];
+  }
+}
+
 
 /**
  * Get product analytics

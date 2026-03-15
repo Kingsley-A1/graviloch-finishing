@@ -70,6 +70,17 @@ const navItems = [
     ),
   },
   {
+    href: "/admin/samples",
+    label: "Samples",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
+  },
+  {
     href: "/admin/reviews",
     label: "Reviews",
     icon: (
@@ -105,15 +116,9 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
-  // Initialize collapsed state from localStorage (only runs on client)
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("admin-sidebar-collapsed");
-      return saved ? JSON.parse(saved) : false;
-    }
-    return false;
-  });
+
+  // On desktop: collapsed by default, expands on hover
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   // Track previous pathname for mobile close
   const prevPathname = useRef(pathname);
@@ -127,23 +132,21 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Close sidebar on route change (mobile) - schedule for next tick
+  // Close sidebar on route change (mobile)
   useEffect(() => {
     if (prevPathname.current !== pathname) {
-      // Use microtask to avoid synchronous setState in effect
       queueMicrotask(() => setIsOpen(false));
       prevPathname.current = pathname;
     }
   }, [pathname]);
 
-  // Save collapsed state to localStorage
-  const toggleCollapse = () => {
-    const newState = !isCollapsed;
-    setIsCollapsed(newState);
-    localStorage.setItem("admin-sidebar-collapsed", JSON.stringify(newState));
+  const handleMouseEnter = () => {
+    if (!isMobile) setIsCollapsed(false);
   };
 
-  const sidebarWidth = isCollapsed ? 72 : 260;
+  const handleMouseLeave = () => {
+    if (!isMobile) setIsCollapsed(true);
+  };
 
   return (
     <SidebarContext.Provider value={{ isCollapsed, setIsCollapsed }}>
@@ -189,10 +192,12 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
         {(!isMobile || isOpen) && (
           <motion.aside
             className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ""}`}
-            initial={isMobile ? { x: -sidebarWidth } : false}
-            animate={{ x: 0, width: isMobile ? 260 : sidebarWidth }}
-            exit={{ x: -sidebarWidth }}
+            initial={isMobile ? { x: -260 } : false}
+            animate={{ x: 0 }}
+            exit={{ x: -260 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {/* Logo */}
             <div className={styles.logo}>
@@ -215,23 +220,6 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
                 </motion.div>
               )}
             </div>
-
-            {/* Collapse Toggle (Desktop only) */}
-            {!isMobile && (
-              <button
-                className={styles.collapseToggle}
-                onClick={toggleCollapse}
-                aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  {isCollapsed ? (
-                    <polyline points="9 18 15 12 9 6" />
-                  ) : (
-                    <polyline points="15 18 9 12 15 6" />
-                  )}
-                </svg>
-              </button>
-            )}
 
             {/* Navigation */}
             <nav className={styles.nav}>
@@ -295,7 +283,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
       {/* CSS variable for main content margin */}
       <style jsx global>{`
         :root {
-          --admin-sidebar-width: ${isMobile ? 0 : sidebarWidth}px;
+          --admin-sidebar-width: ${isMobile ? 0 : 72}px;
         }
       `}</style>
     </SidebarContext.Provider>

@@ -7,39 +7,19 @@
 import styles from "./RecentActivity.module.css";
 
 async function getRecentActivity() {
-  // In production, this would fetch from the API
-  return [
-    {
-      id: 1,
-      type: "review",
-      message: "New review submitted",
-      time: "2 min ago",
-    },
-    {
-      id: 2,
-      type: "product",
-      message: "Product viewed: Venetian Plaster",
-      time: "15 min ago",
-    },
-    {
-      id: 3,
-      type: "contact",
-      message: "New contact inquiry",
-      time: "1 hour ago",
-    },
-    {
-      id: 4,
-      type: "gallery",
-      message: "Gallery image liked",
-      time: "2 hours ago",
-    },
-    {
-      id: 5,
-      type: "product",
-      message: "Product shared: Marmorino Kit",
-      time: "3 hours ago",
-    },
-  ];
+  const baseUrl =
+    process.env.NEXTAUTH_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  try {
+    const res = await fetch(`${baseUrl}/api/analytics?type=recent`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.success && Array.isArray(data.data) ? data.data : [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function RecentActivity() {
@@ -112,15 +92,19 @@ export default async function RecentActivity() {
     <div className={styles.container}>
       <h2 className={styles.title}>Recent Activity</h2>
       <div className={styles.list}>
-        {activities.map((activity) => (
-          <div key={activity.id} className={styles.item}>
-            <div className={styles.icon}>{getIcon(activity.type)}</div>
-            <div className={styles.content}>
-              <p className={styles.message}>{activity.message}</p>
-              <span className={styles.time}>{activity.time}</span>
+        {activities.length === 0 ? (
+          <p className={styles.empty}>No recent activity yet.</p>
+        ) : (
+          activities.map((activity: any) => (
+            <div key={activity.id} className={styles.item}>
+              <div className={styles.icon}>{getIcon(activity.type)}</div>
+              <div className={styles.content}>
+                <p className={styles.message}>{activity.message}</p>
+                <span className={styles.time}>{activity.time}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
