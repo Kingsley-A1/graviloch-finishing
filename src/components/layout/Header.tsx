@@ -63,7 +63,7 @@ export default function Header() {
           <Link href="/" className={styles.logo}>
             <div className={styles.logoImageWrapper}>
               <Image
-                src="/icons/logo.png?v=2"
+                src="/icons/logo.png"
                 alt="GRAVILOCH FINISHINGS LTD"
                 width={44}
                 height={44}
@@ -73,7 +73,9 @@ export default function Header() {
             </div>
             <div className={styles.logoText}>
               <span className={styles.brand}>GRAVILOCH</span>
-              <span className={styles.tagline}>FINISHINGS <span className={styles.ltd}>LTD</span></span>
+              <span className={styles.tagline}>
+                FINISHINGS <span className={styles.ltd}>LTD</span>
+              </span>
             </div>
           </Link>
 
