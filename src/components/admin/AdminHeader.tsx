@@ -25,6 +25,10 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
 
   return (
     <header className={styles.header}>
+      <div className={styles.spacer} aria-hidden="true" />
+      <div className={styles.titleWrap}>
+        <h1 className={styles.title}>GRAVILOCH FINISHING ADMIN PORTAL</h1>
+      </div>
       <div className={styles.actions}>
         <Button variant="ghost" size="sm" onClick={handleSignOut}>
           Sign Out

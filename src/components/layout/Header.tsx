@@ -24,6 +24,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/documentation", label: "Documentation" },
+  { href: "/admin/login", label: "Admin" },
 ];
 
 export default function Header() {
@@ -47,8 +48,9 @@ export default function Header() {
     closeNav();
   }, [pathname]);
 
-  // Removed the early return for admin so it shows on all routes
-  // The header now appears on admin routes as well
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <>

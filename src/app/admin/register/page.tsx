@@ -85,8 +85,9 @@ export default function AdminRegisterPage() {
           <Image
             src="/icons/logo.png"
             alt="GRAVILOCH FINISHINGS LTD"
-            width={60}
-            height={60}
+            width={42}
+            height={42}
+            className={styles.logoMark}
             style={{ objectFit: "contain" }}
           />
           <div className={styles.logoText}>
