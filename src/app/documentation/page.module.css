@@ -77,7 +77,9 @@
   font-size: 0.95rem;
   color: #f3f4f6;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .searchInput::placeholder {
@@ -174,7 +176,9 @@
   font-size: 0.85rem;
   color: var(--obsidian-300, #9ca3af);
   text-decoration: none;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
   border-left: 2px solid transparent;
   margin-left: -1px;
   line-height: 1.4;
@@ -402,11 +406,31 @@
   margin-right: 0.25rem;
 }
 
-.badgeGet    { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-.badgePost   { background: rgba(245, 208, 97, 0.15); color: #f5d061; border: 1px solid rgba(245, 208, 97, 0.3); }
-.badgePut    { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
-.badgeDelete { background: rgba(239, 68, 68, 0.15);  color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-.badgePatch  { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+.badgeGet {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.badgePost {
+  background: rgba(245, 208, 97, 0.15);
+  color: #f5d061;
+  border: 1px solid rgba(245, 208, 97, 0.3);
+}
+.badgePut {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+.badgeDelete {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.badgePatch {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
 
 /* ─── Bullet list ────────────────────────────────────── */
 .list {

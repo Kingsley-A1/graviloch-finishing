@@ -84,7 +84,8 @@ export default function AdminProductsPage() {
     {
       key: "price",
       label: "Price",
-      render: (row: Product) => `₦${row.price.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+      render: (row: Product) =>
+        `₦${row.price.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
     },
     {
       key: "inStock",

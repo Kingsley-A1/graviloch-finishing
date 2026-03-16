@@ -141,7 +141,9 @@ export default function AdminColoursPage() {
   const [localColourData, setLocalColourData] = useState(colourData);
 
   // Edit modal state
-  const [editingColour, setEditingColour] = useState<(Colour & { family: string }) | null>(null);
+  const [editingColour, setEditingColour] = useState<
+    (Colour & { family: string }) | null
+  >(null);
   const [editForm, setEditForm] = useState({ name: "", hex: "" });
 
   const allColours = useMemo(() => {
@@ -180,7 +182,10 @@ export default function AdminColoursPage() {
     [allColours, localColourData],
   );
 
-  const openEditModal = (colour: Colour & { family: string }, e: React.MouseEvent) => {
+  const openEditModal = (
+    colour: Colour & { family: string },
+    e: React.MouseEvent,
+  ) => {
     e.stopPropagation();
     setEditingColour(colour);
     setEditForm({ name: colour.name, hex: colour.hex });
@@ -198,17 +203,32 @@ export default function AdminColoursPage() {
       ...prev,
       [family]: prev[family].map((c) =>
         c.id === editingColour.id
-          ? { ...c, name: editForm.name.trim(), hex: editForm.hex.toUpperCase() }
+          ? {
+              ...c,
+              name: editForm.name.trim(),
+              hex: editForm.hex.toUpperCase(),
+            }
           : c,
       ),
     }));
     if (selectedColour?.id === editingColour.id) {
-      setSelectedColour((prev) => prev ? { ...prev, name: editForm.name.trim(), hex: editForm.hex.toUpperCase() } : null);
+      setSelectedColour((prev) =>
+        prev
+          ? {
+              ...prev,
+              name: editForm.name.trim(),
+              hex: editForm.hex.toUpperCase(),
+            }
+          : null,
+      );
     }
     setEditingColour(null);
   };
 
-  const handleDelete = (colour: Colour & { family: string }, e: React.MouseEvent) => {
+  const handleDelete = (
+    colour: Colour & { family: string },
+    e: React.MouseEvent,
+  ) => {
     e.stopPropagation();
     if (!window.confirm(`Delete "${colour.name}"?`)) return;
     const family = colour.family as keyof typeof localColourData;
@@ -480,7 +500,9 @@ export default function AdminColoursPage() {
               <button
                 className={styles.editBtn}
                 onClick={(e) => {
-                  const colourWithFamily = allColours.find((c) => c.id === selectedColour.id);
+                  const colourWithFamily = allColours.find(
+                    (c) => c.id === selectedColour.id,
+                  );
                   if (colourWithFamily) openEditModal(colourWithFamily, e);
                 }}
               >
@@ -489,7 +511,9 @@ export default function AdminColoursPage() {
               <button
                 className={styles.deleteBtn}
                 onClick={(e) => {
-                  const colourWithFamily = allColours.find((c) => c.id === selectedColour.id);
+                  const colourWithFamily = allColours.find(
+                    (c) => c.id === selectedColour.id,
+                  );
                   if (colourWithFamily) handleDelete(colourWithFamily, e);
                 }}
               >
@@ -502,12 +526,26 @@ export default function AdminColoursPage() {
 
       {/* Edit Colour Modal */}
       {editingColour && (
-        <div className={styles.modalOverlay} onClick={() => setEditingColour(null)}>
-          <div className={styles.editModal} onClick={(e) => e.stopPropagation()}>
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setEditingColour(null)}
+        >
+          <div
+            className={styles.editModal}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className={styles.editModalHeader}>
               <h3 className={styles.editModalTitle}>Edit Colour</h3>
-              <button className={styles.closeModal} onClick={() => setEditingColour(null)}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <button
+                className={styles.closeModal}
+                onClick={() => setEditingColour(null)}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
@@ -523,7 +561,9 @@ export default function AdminColoursPage() {
                   className={styles.editInput}
                   type="text"
                   value={editForm.name}
-                  onChange={(e) => setEditForm((f) => ({ ...f, name: e.target.value }))}
+                  onChange={(e) =>
+                    setEditForm((f) => ({ ...f, name: e.target.value }))
+                  }
                   placeholder="e.g. Tuscan Terracotta"
                 />
               </div>
@@ -535,21 +575,29 @@ export default function AdminColoursPage() {
                     type="color"
                     value={editForm.hex}
                     onChange={(e) =>
-                      setEditForm((f) => ({ ...f, hex: e.target.value.toUpperCase() }))
+                      setEditForm((f) => ({
+                        ...f,
+                        hex: e.target.value.toUpperCase(),
+                      }))
                     }
                   />
                   <input
                     className={styles.editInput}
                     type="text"
                     value={editForm.hex}
-                    onChange={(e) => setEditForm((f) => ({ ...f, hex: e.target.value }))}
+                    onChange={(e) =>
+                      setEditForm((f) => ({ ...f, hex: e.target.value }))
+                    }
                     placeholder="#CC6B49"
                     maxLength={7}
                   />
                 </div>
               </div>
               <div className={styles.editModalFooter}>
-                <button className={styles.cancelBtn} onClick={() => setEditingColour(null)}>
+                <button
+                  className={styles.cancelBtn}
+                  onClick={() => setEditingColour(null)}
+                >
                   Cancel
                 </button>
                 <button className={styles.saveBtn} onClick={handleEditSave}>

@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     if (!validation.success) {
       return NextResponse.json(
         { success: false, error: "Invalid event data" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -64,12 +64,15 @@ export async function GET(request: NextRequest) {
     if (!session || !session.user) {
       return NextResponse.json(
         { success: false, error: "Unauthorized" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     const { searchParams } = new URL(request.url);
-    const days = Math.min(90, Math.max(1, parseInt(searchParams.get("days") || "30")));
+    const days = Math.min(
+      90,
+      Math.max(1, parseInt(searchParams.get("days") || "30")),
+    );
     const type = searchParams.get("type") || "summary";
     const productId = searchParams.get("productId");
 
@@ -109,7 +112,7 @@ export async function GET(request: NextRequest) {
     console.error("Analytics GET error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch analytics" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

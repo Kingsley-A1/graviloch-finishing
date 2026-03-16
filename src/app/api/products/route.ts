@@ -9,7 +9,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { CreateProductSchema, type ProductFilters, type ProductSortOption } from "@/types";
+import {
+  CreateProductSchema,
+  type ProductFilters,
+  type ProductSortOption,
+} from "@/types";
 
 // GET /api/products - Get all products with filters
 export async function GET(request: NextRequest) {
@@ -18,7 +22,10 @@ export async function GET(request: NextRequest) {
 
     // Parse query parameters
     const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const limit = Math.min(200, Math.max(1, parseInt(searchParams.get("limit") || "12")));
+    const limit = Math.min(
+      200,
+      Math.max(1, parseInt(searchParams.get("limit") || "12")),
+    );
     const category = searchParams.get("category") as ProductFilters["category"];
     const inStock = searchParams.get("inStock");
     const minPrice = searchParams.get("minPrice");
@@ -39,8 +46,10 @@ export async function GET(request: NextRequest) {
 
     if (minPrice || maxPrice) {
       where.price = {};
-      if (minPrice) (where.price as Record<string, number>).gte = parseFloat(minPrice);
-      if (maxPrice) (where.price as Record<string, number>).lte = parseFloat(maxPrice);
+      if (minPrice)
+        (where.price as Record<string, number>).gte = parseFloat(minPrice);
+      if (maxPrice)
+        (where.price as Record<string, number>).lte = parseFloat(maxPrice);
     }
 
     if (search) {
@@ -104,7 +113,7 @@ export async function GET(request: NextRequest) {
     console.error("Products GET error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch products" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -118,7 +127,7 @@ export async function POST(request: NextRequest) {
     if (!session || !session.user) {
       return NextResponse.json(
         { success: false, error: "Unauthorized" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -133,7 +142,7 @@ export async function POST(request: NextRequest) {
           error: "Validation failed",
           details: validation.error.flatten().fieldErrors,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -148,13 +157,13 @@ export async function POST(request: NextRequest) {
         message: "Product created successfully",
         data: product,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Products POST error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create product" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -125,13 +125,16 @@ export default function ProductFormModal({
       } else {
         const errData = await res.json().catch(() => ({}));
         const detail = errData?.details
-          ? Object.entries(errData.details).map(([k, v]) => `${k}: ${(v as string[]).join(", ")}`).join("\n")
+          ? Object.entries(errData.details)
+              .map(([k, v]) => `${k}: ${(v as string[]).join(", ")}`)
+              .join("\n")
           : errData?.error || "Failed to save product";
         alert(detail);
       }
     } catch (error) {
       console.error("Save failed:", error);
-      const message = error instanceof Error ? error.message : "Failed to save product";
+      const message =
+        error instanceof Error ? error.message : "Failed to save product";
       alert(message);
     } finally {
       setLoading(false);

@@ -11,7 +11,10 @@ import crypto from "crypto";
 
 type GroupByEventCount = { event: string; _count: { event: number } };
 type GroupByPageCount = { page: string; _count: { page: number } };
-type GroupByProductIdCount = { productId: string | null; _count: { productId: number } };
+type GroupByProductIdCount = {
+  productId: string | null;
+  _count: { productId: number };
+};
 type DailyView = { date: string; count: bigint };
 
 /**
@@ -37,7 +40,11 @@ export type AnalyticsEvent =
  */
 function hashIP(ip: string): string {
   const salt = process.env.NEXTAUTH_SECRET || "graviloch-salt";
-  return crypto.createHash("sha256").update(ip + salt).digest("hex").slice(0, 16);
+  return crypto
+    .createHash("sha256")
+    .update(ip + salt)
+    .digest("hex")
+    .slice(0, 16);
 }
 
 /**
@@ -69,7 +76,7 @@ export async function trackEvent(
     metadata?: Record<string, unknown>;
     userAgent?: string;
     ipHash?: string;
-  }
+  },
 ): Promise<void> {
   try {
     await prisma.analytics.create({
@@ -187,11 +194,19 @@ export async function getRecentEvents(limit: number = 8) {
     const events = await prisma.analytics.findMany({
       orderBy: { createdAt: "desc" },
       take: limit,
-      select: { id: true, event: true, page: true, productId: true, createdAt: true },
+      select: {
+        id: true,
+        event: true,
+        page: true,
+        productId: true,
+        createdAt: true,
+      },
     });
 
     // Resolve product names for product events
-    const productIds = [...new Set(events.map((e) => e.productId).filter(Boolean) as string[])];
+    const productIds = [
+      ...new Set(events.map((e) => e.productId).filter(Boolean) as string[]),
+    ];
     const products =
       productIds.length > 0
         ? await prisma.product.findMany({
@@ -243,7 +258,13 @@ export async function getRecentEvents(limit: number = 8) {
       const hrs = Math.floor(mins / 60);
       const days = Math.floor(hrs / 24);
       const time =
-        days > 0 ? `${days}d ago` : hrs > 0 ? `${hrs}h ago` : mins > 0 ? `${mins}m ago` : "Just now";
+        days > 0
+          ? `${days}d ago`
+          : hrs > 0
+            ? `${hrs}h ago`
+            : mins > 0
+              ? `${mins}m ago`
+              : "Just now";
 
       return {
         id: e.id,
@@ -257,7 +278,6 @@ export async function getRecentEvents(limit: number = 8) {
     return [];
   }
 }
-
 
 /**
  * Get product analytics
@@ -283,7 +303,7 @@ export async function getProductAnalytics(productId?: string) {
           acc[e.event] = e._count.event;
           return acc;
         },
-        {} as Record<string, number>
+        {} as Record<string, number>,
       );
     }
 
@@ -308,7 +328,12 @@ export async function getProductAnalytics(productId?: string) {
       select: { id: true, name: true, imageUrl: true },
     });
 
-    const productMap = new Map(products.map((p: { id: string; name: string; imageUrl: string }) => [p.id, p]));
+    const productMap = new Map(
+      products.map((p: { id: string; name: string; imageUrl: string }) => [
+        p.id,
+        p,
+      ]),
+    );
 
     return topProducts.map((p: GroupByProductIdCount) => ({
       product: productMap.get(p.productId!),
@@ -325,7 +350,7 @@ export async function getProductAnalytics(productId?: string) {
  */
 export async function incrementProductStat(
   productId: string,
-  stat: "views" | "likes" | "contacts" | "shares"
+  stat: "views" | "likes" | "contacts" | "shares",
 ): Promise<void> {
   try {
     await prisma.product.update({
@@ -333,7 +358,10 @@ export async function incrementProductStat(
       data: { [stat]: { increment: 1 } },
     });
   } catch (error) {
-    console.error(`Failed to increment ${stat} for product ${productId}:`, error);
+    console.error(
+      `Failed to increment ${stat} for product ${productId}:`,
+      error,
+    );
   }
 }
 
@@ -342,7 +370,7 @@ export async function incrementProductStat(
  */
 export async function incrementGalleryStat(
   imageId: string,
-  stat: "views" | "likes"
+  stat: "views" | "likes",
 ): Promise<void> {
   try {
     await prisma.galleryImage.update({

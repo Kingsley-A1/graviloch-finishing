@@ -33,7 +33,10 @@ interface DocPhase {
 // ─── Utility: highlight search term in text ───────────────────────────────────
 function Hl({ text, query }: { text: string; query: string }) {
   if (!query) return <>{text}</>;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi");
+  const regex = new RegExp(
+    `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+    "gi",
+  );
   const parts = text.split(regex);
   return (
     <>
@@ -44,7 +47,7 @@ function Hl({ text, query }: { text: string; query: string }) {
           </mark>
         ) : (
           p
-        )
+        ),
       )}
     </>
   );
@@ -57,7 +60,8 @@ const PHASES: DocPhase[] = [
     icon: "🏛️",
     tag: "Phase 1",
     title: "Platform Overview",
-    description: "Brand context, tech stack, architecture, and project structure.",
+    description:
+      "Brand context, tech stack, architecture, and project structure.",
     color: "#10b981",
     bg: "rgba(16,185,129,0.12)",
   },
@@ -66,7 +70,8 @@ const PHASES: DocPhase[] = [
     icon: "🖼️",
     tag: "Phase 2",
     title: "Public Pages",
-    description: "Every customer-facing page: purpose, components, and behaviour.",
+    description:
+      "Every customer-facing page: purpose, components, and behaviour.",
     color: "#f5d061",
     bg: "rgba(245,208,97,0.12)",
   },
@@ -75,7 +80,8 @@ const PHASES: DocPhase[] = [
     icon: "🔐",
     tag: "Phase 3",
     title: "Admin Panel",
-    description: "Authentication flows, dashboard, and content management tools.",
+    description:
+      "Authentication flows, dashboard, and content management tools.",
     color: "#818cf8",
     bg: "rgba(129,140,248,0.12)",
   },
@@ -102,7 +108,8 @@ const PHASES: DocPhase[] = [
     icon: "🧩",
     tag: "Phase 6",
     title: "Components",
-    description: "Reusable UI and feature components, props, and usage patterns.",
+    description:
+      "Reusable UI and feature components, props, and usage patterns.",
     color: "#f472b6",
     bg: "rgba(244,114,182,0.12)",
   },
@@ -124,7 +131,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "brand",
     phaseId: "overview",
     title: "About GRAVILOCH FINISHING LTD",
-    searchText: "about brand company graviloch nikkolor italian decorative paint nigeria port harcourt",
+    searchText:
+      "about brand company graviloch nikkolor italian decorative paint nigeria port harcourt",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -132,8 +140,8 @@ const ALL_SECTIONS: DocEntry[] = [
           <strong>Nikkolor Italian Decorative Paint</strong> in Nigeria,
           specialising in luxury wall finishes — Venetian Plaster, Stucco,
           Travertino, Marmorino, Metallic, Liquid Metal, and Microcemento. The
-          company is headquartered at <em>89 Stadium Road, Port Harcourt,
-          Rivers State, Nigeria</em>.
+          company is headquartered at{" "}
+          <em>89 Stadium Road, Port Harcourt, Rivers State, Nigeria</em>.
         </p>
         <p className={styles.sectionText}>
           Led by <strong>Mr. Christian N. Ugwu</strong>, GRAVILOCH operates
@@ -150,7 +158,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "techstack",
     phaseId: "overview",
     title: "Technology Stack",
-    searchText: "tech stack nextjs typescript prisma cockroachdb framer motion tailwindcss nextauth cloudflare r2 resend",
+    searchText:
+      "tech stack nextjs typescript prisma cockroachdb framer motion tailwindcss nextauth cloudflare r2 resend",
     content: (
       <>
         <table className={styles.table}>
@@ -165,11 +174,23 @@ const ALL_SECTIONS: DocEntry[] = [
             {[
               ["Framework", "Next.js 16.1.5", "App Router + Turbopack"],
               ["Language", "TypeScript 5", "Strict mode"],
-              ["Styling", "CSS Modules + Tailwind classes", "Per-component scoped CSS"],
+              [
+                "Styling",
+                "CSS Modules + Tailwind classes",
+                "Per-component scoped CSS",
+              ],
               ["Animation", "Framer Motion", "Page transitions, modals, cards"],
               ["ORM", "Prisma 6", "Type-safe DB queries"],
-              ["Database", "CockroachDB (PostgreSQL-compatible)", "Serverless scaling"],
-              ["Auth", "NextAuth.js (Auth.js v5)", "JWT sessions, credentials provider"],
+              [
+                "Database",
+                "CockroachDB (PostgreSQL-compatible)",
+                "Serverless scaling",
+              ],
+              [
+                "Auth",
+                "NextAuth.js (Auth.js v5)",
+                "JWT sessions, credentials provider",
+              ],
               ["Storage", "Cloudflare R2", "Image + video uploads"],
               ["Email", "Resend", "Contact form transactional emails"],
               ["Messaging", "WhatsApp Business deep-link", "Enquiry CTAs"],
@@ -178,8 +199,12 @@ const ALL_SECTIONS: DocEntry[] = [
             ].map(([layer, tech, notes]) => (
               <tr key={layer}>
                 <td>{layer}</td>
-                <td><code>{tech}</code></td>
-                <td style={{ color: "#6b7280", fontSize: "0.8rem" }}>{notes}</td>
+                <td>
+                  <code>{tech}</code>
+                </td>
+                <td style={{ color: "#6b7280", fontSize: "0.8rem" }}>
+                  {notes}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -191,7 +216,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "architecture",
     phaseId: "overview",
     title: "Architecture Overview",
-    searchText: "architecture app router server components client server side rendering ssr ssg dynamic static pages",
+    searchText:
+      "architecture app router server components client server side rendering ssr ssg dynamic static pages",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -199,8 +225,8 @@ const ALL_SECTIONS: DocEntry[] = [
           conventions. Server Components handle data fetching and SEO metadata
           at the top of each route; Client Components (marked{" "}
           <code>&quot;use client&quot;</code>) handle interactivity (modals,
-          forms, animations). The admin section is dynamically rendered on
-          every request (<code>ƒ Dynamic</code>) while most public pages are
+          forms, animations). The admin section is dynamically rendered on every
+          request (<code>ƒ Dynamic</code>) while most public pages are
           statically generated (<code>○ Static</code>) at build time.
         </p>
         <div className={styles.codeBlock}>
@@ -228,7 +254,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "projectstructure",
     phaseId: "overview",
     title: "Project Structure",
-    searchText: "project folder structure directory src app components hooks lib types prisma scripts public",
+    searchText:
+      "project folder structure directory src app components hooks lib types prisma scripts public",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -260,7 +287,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-home",
     phaseId: "pages",
     title: "Home Page — /",
-    searchText: "home page hero section services cta whatsapp features listing products gallery",
+    searchText:
+      "home page hero section services cta whatsapp features listing products gallery",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -269,11 +297,22 @@ const ALL_SECTIONS: DocEntry[] = [
           statically generated using only layout components — no DB calls.
         </p>
         <ul className={styles.list}>
-          <li><code>HeroSection</code> — animated headline with CTA buttons</li>
-          <li><code>ServicesSection</code> — six finish types with icons</li>
-          <li><code>FeaturedGallery</code> — fetches up to 6 featured images from <code>/api/gallery?featured=true</code></li>
-          <li><code>WhyChooseUs</code> — differentiating values grid</li>
-          <li><code>CTABanner</code> — WhatsApp enquiry + contact link</li>
+          <li>
+            <code>HeroSection</code> — animated headline with CTA buttons
+          </li>
+          <li>
+            <code>ServicesSection</code> — six finish types with icons
+          </li>
+          <li>
+            <code>FeaturedGallery</code> — fetches up to 6 featured images from{" "}
+            <code>/api/gallery?featured=true</code>
+          </li>
+          <li>
+            <code>WhyChooseUs</code> — differentiating values grid
+          </li>
+          <li>
+            <code>CTABanner</code> — WhatsApp enquiry + contact link
+          </li>
         </ul>
       </>
     ),
@@ -282,18 +321,33 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-about",
     phaseId: "pages",
     title: "About Page — /about",
-    searchText: "about page story christian ugwu company history team craftsman services process cta",
+    searchText:
+      "about page story christian ugwu company history team craftsman services process cta",
     content: (
       <>
         <p className={styles.sectionText}>
           Static page composed of five discrete about-specific sections:
         </p>
         <ul className={styles.list}>
-          <li><code>HeroAbout</code> — full-bleed hero with page title</li>
-          <li><code>StorySection</code> — company narrative with 4-image grid (<em>master-craftman.jpg</em>, <em>team-at-work.webp</em>, <em>paint-craftsmanship.webp</em>, <em>finished_work.jpg</em>)</li>
-          <li><code>ServicesSection</code> — cards for each finish type offered</li>
-          <li><code>ProcessSection</code> — step-by-step "How We Work" guide</li>
-          <li><code>CTASection</code> — background uses <em>master-craftman.jpg</em> with green gradient overlay; links to Contact and Gallery</li>
+          <li>
+            <code>HeroAbout</code> — full-bleed hero with page title
+          </li>
+          <li>
+            <code>StorySection</code> — company narrative with 4-image grid (
+            <em>master-craftman.jpg</em>, <em>team-at-work.webp</em>,{" "}
+            <em>paint-craftsmanship.webp</em>, <em>finished_work.jpg</em>)
+          </li>
+          <li>
+            <code>ServicesSection</code> — cards for each finish type offered
+          </li>
+          <li>
+            <code>ProcessSection</code> — step-by-step "How We Work" guide
+          </li>
+          <li>
+            <code>CTASection</code> — background uses{" "}
+            <em>master-craftman.jpg</em> with green gradient overlay; links to
+            Contact and Gallery
+          </li>
         </ul>
         <div className={styles.infoBox}>
           All about components live in <code>src/components/about/</code>.
@@ -305,14 +359,14 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-colours",
     phaseId: "pages",
     title: "Colours Page — /colours",
-    searchText: "colours color palette catalogue nikkolor paint range finish categories venetian stucco",
+    searchText:
+      "colours color palette catalogue nikkolor paint range finish categories venetian stucco",
     content: (
       <>
         <p className={styles.sectionText}>
-          Showcases Nikkolor colour ranges and finish types using static
-          visual data. Uses <code>ColourCard</code> components to display
-          swatches. The page is primarily inspirational—no cart or DB
-          interaction.
+          Showcases Nikkolor colour ranges and finish types using static visual
+          data. Uses <code>ColourCard</code> components to display swatches. The
+          page is primarily inspirational—no cart or DB interaction.
         </p>
       </>
     ),
@@ -321,7 +375,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-shop",
     phaseId: "pages",
     title: "Shop / Products — /shop",
-    searchText: "shop products purchase price stock category filter search buy paint tools",
+    searchText:
+      "shop products purchase price stock category filter search buy paint tools",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -330,10 +385,27 @@ const ALL_SECTIONS: DocEntry[] = [
           Supports category filtering, search, and sorting.
         </p>
         <ul className={styles.list}>
-          <li>Category filter: <code>venetian | marmorino | travertino | metallic | liquid-metal | decorative | specialty | tools | other</code></li>
-          <li>Sort options: <code>newest | oldest | price-low | price-high | most-viewed | most-liked | most-contacted</code></li>
-          <li>Each product card has views, likes, and a WhatsApp enquiry CTA</li>
-          <li>Product clicks increment the <code>views</code> counter via analytics event</li>
+          <li>
+            Category filter:{" "}
+            <code>
+              venetian | marmorino | travertino | metallic | liquid-metal |
+              decorative | specialty | tools | other
+            </code>
+          </li>
+          <li>
+            Sort options:{" "}
+            <code>
+              newest | oldest | price-low | price-high | most-viewed |
+              most-liked | most-contacted
+            </code>
+          </li>
+          <li>
+            Each product card has views, likes, and a WhatsApp enquiry CTA
+          </li>
+          <li>
+            Product clicks increment the <code>views</code> counter via
+            analytics event
+          </li>
         </ul>
       </>
     ),
@@ -342,7 +414,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-gallery",
     phaseId: "pages",
     title: "Gallery Page — /gallery",
-    searchText: "gallery images masonry category filter tabs sort finished work video castle",
+    searchText:
+      "gallery images masonry category filter tabs sort finished work video castle",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -351,12 +424,25 @@ const ALL_SECTIONS: DocEntry[] = [
           control via URL query params.
         </p>
         <ul className={styles.list}>
-          <li>Category tabs: <code>interior | exterior | office | commercial | residential | dining | bedroom | living-room | bathroom | other</code></li>
-          <li>Sort: <code>newest | oldest | most-viewed | most-liked</code></li>
-          <li><strong>Finished Work Videos</strong> section — plays <code>/Castle-finished-work.mp4</code> natively in a styled video player</li>
+          <li>
+            Category tabs:{" "}
+            <code>
+              interior | exterior | office | commercial | residential | dining |
+              bedroom | living-room | bathroom | other
+            </code>
+          </li>
+          <li>
+            Sort: <code>newest | oldest | most-viewed | most-liked</code>
+          </li>
+          <li>
+            <strong>Finished Work Videos</strong> section — plays{" "}
+            <code>/Castle-finished-work.mp4</code> natively in a styled video
+            player
+          </li>
         </ul>
         <div className={styles.infoBox}>
-          Use the admin panel to add or manage gallery images without re-deploying.
+          Use the admin panel to add or manage gallery images without
+          re-deploying.
         </div>
       </>
     ),
@@ -365,7 +451,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-samples",
     phaseId: "pages",
     title: "Samples Page — /samples",
-    searchText: "samples finish types venetian stucco travertino metallic liquid metal microcemento other modal popup enquire whatsapp",
+    searchText:
+      "samples finish types venetian stucco travertino metallic liquid metal microcemento other modal popup enquire whatsapp",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -375,10 +462,18 @@ const ALL_SECTIONS: DocEntry[] = [
           enlarged image and a WhatsApp enquiry shortcut.
         </p>
         <ul className={styles.list}>
-          <li>Category tabs: <code>All | Venetian | Stucco | Travertino | Metallic | Liquid Metal | Microcemento | Other</code></li>
+          <li>
+            Category tabs:{" "}
+            <code>
+              All | Venetian | Stucco | Travertino | Metallic | Liquid Metal |
+              Microcemento | Other
+            </code>
+          </li>
           <li>Modal opens on card click — closes on overlay click or ✕</li>
           <li>Background scroll is locked while modal is open</li>
-          <li>WhatsApp enquiry URL passes sample title and category as context</li>
+          <li>
+            WhatsApp enquiry URL passes sample title and category as context
+          </li>
         </ul>
         <div className={styles.warnBox}>
           The <code>stucco</code> category replaces the deprecated{" "}
@@ -393,7 +488,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-testimonials",
     phaseId: "pages",
     title: "Testimonials — /testimonials",
-    searchText: "testimonials reviews ratings stars customer feedback approved pending",
+    searchText:
+      "testimonials reviews ratings stars customer feedback approved pending",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -414,7 +510,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "page-contact",
     phaseId: "pages",
     title: "Contact Page — /contact",
-    searchText: "contact form email whatsapp enquiry address phone business hours subject message name",
+    searchText:
+      "contact form email whatsapp enquiry address phone business hours subject message name",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -424,7 +521,9 @@ const ALL_SECTIONS: DocEntry[] = [
         </p>
         <ul className={styles.list}>
           <li>Fields: Full Name*, Email Address*, Phone, Subject, Message*</li>
-          <li>Submission hits <code>POST /api/contact</code></li>
+          <li>
+            Submission hits <code>POST /api/contact</code>
+          </li>
           <li>Email channel uses Resend; WhatsApp channel opens a deep-link</li>
           <li>Business hours displayed: Mon–Fri 9am–6pm, Sat 10am–4pm</li>
         </ul>
@@ -437,7 +536,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-auth",
     phaseId: "admin",
     title: "Admin Authentication",
-    searchText: "admin login register password nextauth credentials session jwt protected route",
+    searchText:
+      "admin login register password nextauth credentials session jwt protected route",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -446,10 +546,21 @@ const ALL_SECTIONS: DocEntry[] = [
           server-side database check on every sign-in.
         </p>
         <ul className={styles.list}>
-          <li>Login route: <code>/admin/login</code></li>
-          <li>Register route: <code>/admin/register</code> (requires optional registration code from <code>ADMIN_REGISTRATION_CODE</code> env var)</li>
-          <li>Protected layout at <code>src/app/admin/layout.tsx</code> redirects unauthenticated users</li>
-          <li>Session data: <code>id</code>, <code>email</code>, <code>name</code>, <code>role</code></li>
+          <li>
+            Login route: <code>/admin/login</code>
+          </li>
+          <li>
+            Register route: <code>/admin/register</code> (requires optional
+            registration code from <code>ADMIN_REGISTRATION_CODE</code> env var)
+          </li>
+          <li>
+            Protected layout at <code>src/app/admin/layout.tsx</code> redirects
+            unauthenticated users
+          </li>
+          <li>
+            Session data: <code>id</code>, <code>email</code>, <code>name</code>
+            , <code>role</code>
+          </li>
         </ul>
         <div className={styles.warnBox}>
           Seed the first admin with <code>node scripts/seed-admin.js</code>{" "}
@@ -463,17 +574,27 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-dashboard",
     phaseId: "admin",
     title: "Admin Dashboard",
-    searchText: "admin dashboard stats quick actions recent activity overview metrics",
+    searchText:
+      "admin dashboard stats quick actions recent activity overview metrics",
     content: (
       <>
         <p className={styles.sectionText}>
-          Route: <code>/admin</code> (redirects to <code>/admin/dashboard</code>).
-          Composed of:
+          Route: <code>/admin</code> (redirects to <code>/admin/dashboard</code>
+          ). Composed of:
         </p>
         <ul className={styles.list}>
-          <li><code>DashboardStats</code> — live counts for products, gallery images, reviews pending, total contacts</li>
-          <li><code>QuickActions</code> — shortcut buttons to common admin tasks (Upload Image, Add Product, Review Pending)</li>
-          <li><code>RecentActivity</code> — latest analytics events in chronological order</li>
+          <li>
+            <code>DashboardStats</code> — live counts for products, gallery
+            images, reviews pending, total contacts
+          </li>
+          <li>
+            <code>QuickActions</code> — shortcut buttons to common admin tasks
+            (Upload Image, Add Product, Review Pending)
+          </li>
+          <li>
+            <code>RecentActivity</code> — latest analytics events in
+            chronological order
+          </li>
         </ul>
       </>
     ),
@@ -482,7 +603,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-gallery",
     phaseId: "admin",
     title: "Gallery Management",
-    searchText: "admin gallery upload image manage delete edit title category featured",
+    searchText:
+      "admin gallery upload image manage delete edit title category featured",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -491,10 +613,19 @@ const ALL_SECTIONS: DocEntry[] = [
           category, and toggle <code>featured</code> status.
         </p>
         <ul className={styles.list}>
-          <li>Upload via <code>POST /api/upload</code> → presigned URL → direct R2 upload</li>
-          <li>Create record via <code>POST /api/gallery</code></li>
-          <li>Delete record via <code>DELETE /api/gallery/:id</code></li>
-          <li>Categories map to the <code>GalleryCategoryEnum</code></li>
+          <li>
+            Upload via <code>POST /api/upload</code> → presigned URL → direct R2
+            upload
+          </li>
+          <li>
+            Create record via <code>POST /api/gallery</code>
+          </li>
+          <li>
+            Delete record via <code>DELETE /api/gallery/:id</code>
+          </li>
+          <li>
+            Categories map to the <code>GalleryCategoryEnum</code>
+          </li>
         </ul>
       </>
     ),
@@ -503,7 +634,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-samples",
     phaseId: "admin",
     title: "Samples Management",
-    searchText: "admin samples manage upload create delete toggle available unavailable category",
+    searchText:
+      "admin samples manage upload create delete toggle available unavailable category",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -511,8 +643,13 @@ const ALL_SECTIONS: DocEntry[] = [
           sample cards shown on the public <code>/samples</code> page.
         </p>
         <ul className={styles.list}>
-          <li>Toggle <code>isAvailable</code> to show/hide a sample without deleting it</li>
-          <li>Category must be one of the <code>SampleCategoryEnum</code> values</li>
+          <li>
+            Toggle <code>isAvailable</code> to show/hide a sample without
+            deleting it
+          </li>
+          <li>
+            Category must be one of the <code>SampleCategoryEnum</code> values
+          </li>
           <li>Image upload uses the same R2 presigned flow as gallery</li>
         </ul>
       </>
@@ -522,7 +659,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-products",
     phaseId: "admin",
     title: "Products Management",
-    searchText: "admin products create edit price stock category description manage",
+    searchText:
+      "admin products create edit price stock category description manage",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -530,9 +668,17 @@ const ALL_SECTIONS: DocEntry[] = [
           catalogue shown on <code>/shop</code>.
         </p>
         <ul className={styles.list}>
-          <li>Fields: name, description, price (₦), category, imageUrl, inStock</li>
-          <li>Engagement metrics (views, likes, contacts, shares) are read-only in the admin</li>
-          <li>Admin can hard-delete products; consider toggling <code>inStock=false</code> first</li>
+          <li>
+            Fields: name, description, price (₦), category, imageUrl, inStock
+          </li>
+          <li>
+            Engagement metrics (views, likes, contacts, shares) are read-only in
+            the admin
+          </li>
+          <li>
+            Admin can hard-delete products; consider toggling{" "}
+            <code>inStock=false</code> first
+          </li>
         </ul>
       </>
     ),
@@ -541,17 +687,20 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-reviews",
     phaseId: "admin",
     title: "Reviews Moderation",
-    searchText: "admin reviews approve reject pending moderation testimonials ratings",
+    searchText:
+      "admin reviews approve reject pending moderation testimonials ratings",
     content: (
       <>
         <p className={styles.sectionText}>
           Route: <code>/admin/reviews</code>. All newly submitted reviews
-          default to <code>approved=false</code>. Admins toggle approval to
-          make them visible on the public testimonials page.
+          default to <code>approved=false</code>. Admins toggle approval to make
+          them visible on the public testimonials page.
         </p>
         <ul className={styles.list}>
           <li>Bulk approve or reject via the data table checkboxes</li>
-          <li>Can mark a review as <code>featured</code> to pin it at the top</li>
+          <li>
+            Can mark a review as <code>featured</code> to pin it at the top
+          </li>
           <li>Reviews from the API are paginated (50 per page)</li>
         </ul>
       </>
@@ -561,7 +710,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-analytics",
     phaseId: "admin",
     title: "Analytics Dashboard",
-    searchText: "admin analytics page views unique visitors events whatsapp clicks contact conversions daily chart",
+    searchText:
+      "admin analytics page views unique visitors events whatsapp clicks contact conversions daily chart",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -570,7 +720,10 @@ const ALL_SECTIONS: DocEntry[] = [
         </p>
         <ul className={styles.list}>
           <li>Total page views + unique visitor estimate</li>
-          <li>Event breakdown: page_view, product_view, whatsapp_click, contact_form, etc.</li>
+          <li>
+            Event breakdown: page_view, product_view, whatsapp_click,
+            contact_form, etc.
+          </li>
           <li>Top pages by view count</li>
           <li>Daily view trend chart (last 30 days)</li>
           <li>Conversion metrics: view → contact rate</li>
@@ -587,7 +740,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "admin-colours",
     phaseId: "admin",
     title: "Colours Management",
-    searchText: "admin colours color palette manage add delete nikkolor range categories",
+    searchText:
+      "admin colours color palette manage add delete nikkolor range categories",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -604,35 +758,71 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "api-gallery",
     phaseId: "api",
     title: "Gallery API — /api/gallery",
-    searchText: "api gallery get post delete list images category filter sort featured",
+    searchText:
+      "api gallery get post delete list images category filter sort featured",
     content: (
       <>
         <table className={styles.table}>
           <thead>
-            <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
+            <tr>
+              <th>Method</th>
+              <th>Path</th>
+              <th>Auth</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeGet}`}>GET</span></td>
-              <td><code>/api/gallery</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeGet}`}>
+                  GET
+                </span>
+              </td>
+              <td>
+                <code>/api/gallery</code>
+              </td>
               <td>Public</td>
-              <td>List images. Params: <code>category</code>, <code>sort</code>, <code>featured</code>, <code>page</code>, <code>limit</code></td>
+              <td>
+                List images. Params: <code>category</code>, <code>sort</code>,{" "}
+                <code>featured</code>, <code>page</code>, <code>limit</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePost}`}>POST</span></td>
-              <td><code>/api/gallery</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePost}`}>
+                  POST
+                </span>
+              </td>
+              <td>
+                <code>/api/gallery</code>
+              </td>
               <td>Admin</td>
-              <td>Create a gallery entry. Body: <code>{`{ title, category, imageUrl }`}</code></td>
+              <td>
+                Create a gallery entry. Body:{" "}
+                <code>{`{ title, category, imageUrl }`}</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePut}`}>PUT</span></td>
-              <td><code>/api/gallery/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePut}`}>
+                  PUT
+                </span>
+              </td>
+              <td>
+                <code>/api/gallery/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Update title, category, or featured flag</td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeDelete}`}>DELETE</span></td>
-              <td><code>/api/gallery/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeDelete}`}>
+                  DELETE
+                </span>
+              </td>
+              <td>
+                <code>/api/gallery/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Permanently delete an image record</td>
             </tr>
@@ -645,35 +835,72 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "api-products",
     phaseId: "api",
     title: "Products API — /api/products",
-    searchText: "api products get post put delete list create update price stock category filter",
+    searchText:
+      "api products get post put delete list create update price stock category filter",
     content: (
       <>
         <table className={styles.table}>
           <thead>
-            <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
+            <tr>
+              <th>Method</th>
+              <th>Path</th>
+              <th>Auth</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeGet}`}>GET</span></td>
-              <td><code>/api/products</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeGet}`}>
+                  GET
+                </span>
+              </td>
+              <td>
+                <code>/api/products</code>
+              </td>
               <td>Public</td>
-              <td>List products with optional <code>category</code>, <code>sort</code>, <code>search</code>, <code>inStock</code>, pagination</td>
+              <td>
+                List products with optional <code>category</code>,{" "}
+                <code>sort</code>, <code>search</code>, <code>inStock</code>,
+                pagination
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePost}`}>POST</span></td>
-              <td><code>/api/products</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePost}`}>
+                  POST
+                </span>
+              </td>
+              <td>
+                <code>/api/products</code>
+              </td>
               <td>Admin</td>
-              <td>Create product. Body validated against <code>CreateProductSchema</code></td>
+              <td>
+                Create product. Body validated against{" "}
+                <code>CreateProductSchema</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePut}`}>PUT</span></td>
-              <td><code>/api/products/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePut}`}>
+                  PUT
+                </span>
+              </td>
+              <td>
+                <code>/api/products/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Partial update (name, price, stock, category, etc.)</td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeDelete}`}>DELETE</span></td>
-              <td><code>/api/products/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeDelete}`}>
+                  DELETE
+                </span>
+              </td>
+              <td>
+                <code>/api/products/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Hard delete a product</td>
             </tr>
@@ -686,35 +913,71 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "api-samples",
     phaseId: "api",
     title: "Samples API — /api/samples",
-    searchText: "api samples get post put delete list category filter available",
+    searchText:
+      "api samples get post put delete list category filter available",
     content: (
       <>
         <table className={styles.table}>
           <thead>
-            <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
+            <tr>
+              <th>Method</th>
+              <th>Path</th>
+              <th>Auth</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeGet}`}>GET</span></td>
-              <td><code>/api/samples</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeGet}`}>
+                  GET
+                </span>
+              </td>
+              <td>
+                <code>/api/samples</code>
+              </td>
               <td>Public</td>
-              <td>List samples. Params: <code>category</code>, <code>isAvailable</code></td>
+              <td>
+                List samples. Params: <code>category</code>,{" "}
+                <code>isAvailable</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePost}`}>POST</span></td>
-              <td><code>/api/samples</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePost}`}>
+                  POST
+                </span>
+              </td>
+              <td>
+                <code>/api/samples</code>
+              </td>
               <td>Admin</td>
-              <td>Create sample. Body: <code>{`{ title, description, category, imageUrl, isAvailable }`}</code></td>
+              <td>
+                Create sample. Body:{" "}
+                <code>{`{ title, description, category, imageUrl, isAvailable }`}</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePut}`}>PUT</span></td>
-              <td><code>/api/samples/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePut}`}>
+                  PUT
+                </span>
+              </td>
+              <td>
+                <code>/api/samples/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Update sample fields including availability toggle</td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeDelete}`}>DELETE</span></td>
-              <td><code>/api/samples/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeDelete}`}>
+                  DELETE
+                </span>
+              </td>
+              <td>
+                <code>/api/samples/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Delete a sample record</td>
             </tr>
@@ -732,30 +995,68 @@ const ALL_SECTIONS: DocEntry[] = [
       <>
         <table className={styles.table}>
           <thead>
-            <tr><th>Method</th><th>Path</th><th>Auth</th><th>Description</th></tr>
+            <tr>
+              <th>Method</th>
+              <th>Path</th>
+              <th>Auth</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeGet}`}>GET</span></td>
-              <td><code>/api/reviews</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeGet}`}>
+                  GET
+                </span>
+              </td>
+              <td>
+                <code>/api/reviews</code>
+              </td>
               <td>Public</td>
-              <td>List <em>approved</em> reviews. Add <code>?stats=true</code> for aggregate stats.</td>
+              <td>
+                List <em>approved</em> reviews. Add <code>?stats=true</code> for
+                aggregate stats.
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePost}`}>POST</span></td>
-              <td><code>/api/reviews</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePost}`}>
+                  POST
+                </span>
+              </td>
+              <td>
+                <code>/api/reviews</code>
+              </td>
               <td>Public</td>
-              <td>Submit new review. Body: <code>{`{ name, email?, rating, message }`}</code>. Defaults to unapproved.</td>
+              <td>
+                Submit new review. Body:{" "}
+                <code>{`{ name, email?, rating, message }`}</code>. Defaults to
+                unapproved.
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgePatch}`}>PATCH</span></td>
-              <td><code>/api/reviews/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgePatch}`}>
+                  PATCH
+                </span>
+              </td>
+              <td>
+                <code>/api/reviews/[id]</code>
+              </td>
               <td>Admin</td>
-              <td>Toggle <code>approved</code> or <code>featured</code></td>
+              <td>
+                Toggle <code>approved</code> or <code>featured</code>
+              </td>
             </tr>
             <tr>
-              <td><span className={`${styles.badge} ${styles.badgeDelete}`}>DELETE</span></td>
-              <td><code>/api/reviews/[id]</code></td>
+              <td>
+                <span className={`${styles.badge} ${styles.badgeDelete}`}>
+                  DELETE
+                </span>
+              </td>
+              <td>
+                <code>/api/reviews/[id]</code>
+              </td>
               <td>Admin</td>
               <td>Remove a review permanently</td>
             </tr>
@@ -768,7 +1069,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "api-contact",
     phaseId: "api",
     title: "Contact API — /api/contact",
-    searchText: "api contact post email whatsapp resend send message form submission",
+    searchText:
+      "api contact post email whatsapp resend send message form submission",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -833,13 +1135,14 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "api-analytics",
     phaseId: "api",
     title: "Analytics API — /api/analytics",
-    searchText: "api analytics post events tracking page view product view whatsapp click contact",
+    searchText:
+      "api analytics post events tracking page view product view whatsapp click contact",
     content: (
       <>
         <p className={styles.sectionText}>
           <span className={`${styles.badge} ${styles.badgePost}`}>POST</span>{" "}
-          <code>/api/analytics</code> — Public (no auth required). Called by
-          the <code>useAnalytics</code> hook on the client.
+          <code>/api/analytics</code> — Public (no auth required). Called by the{" "}
+          <code>useAnalytics</code> hook on the client.
         </p>
         <div className={styles.codeBlock}>
           <code>{`// Request body (TrackEventInput)
@@ -871,9 +1174,9 @@ const ALL_SECTIONS: DocEntry[] = [
         <p className={styles.sectionText}>
           Auth routes are managed by NextAuth.js. The catch-all route at{" "}
           <code>/api/auth/[...nextauth]</code> handles sign-in, sign-out, and
-          session management. A separate{" "}
-          <code>POST /api/auth/register</code> route allows new admin creation
-          (protected by <code>ADMIN_REGISTRATION_CODE</code>).
+          session management. A separate <code>POST /api/auth/register</code>{" "}
+          route allows new admin creation (protected by{" "}
+          <code>ADMIN_REGISTRATION_CODE</code>).
         </p>
       </>
     ),
@@ -884,7 +1187,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-admin",
     phaseId: "database",
     title: "Admin Model",
-    searchText: "database admin model schema prisma email password name role created",
+    searchText:
+      "database admin model schema prisma email password name role created",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -905,7 +1209,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-product",
     phaseId: "database",
     title: "Product Model",
-    searchText: "database product model schema prisma name description price category image stock views likes contacts shares",
+    searchText:
+      "database product model schema prisma name description price category image stock views likes contacts shares",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -932,7 +1237,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-gallery",
     phaseId: "database",
     title: "GalleryImage Model",
-    searchText: "database gallery image model schema prisma title category featured likes views",
+    searchText:
+      "database gallery image model schema prisma title category featured likes views",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -955,7 +1261,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-review",
     phaseId: "database",
     title: "Review Model",
-    searchText: "database review model schema prisma name email rating message approved featured available",
+    searchText:
+      "database review model schema prisma name email rating message approved featured available",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -978,7 +1285,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-analytics",
     phaseId: "database",
     title: "Analytics Model",
-    searchText: "database analytics model schema prisma event page product metadata useragent ip hash created",
+    searchText:
+      "database analytics model schema prisma event page product metadata useragent ip hash created",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -1000,7 +1308,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "model-sample",
     phaseId: "database",
     title: "Sample Model",
-    searchText: "database sample model schema prisma title description image category available created updated",
+    searchText:
+      "database sample model schema prisma title description image category available created updated",
     content: (
       <>
         <div className={styles.codeBlock}>
@@ -1016,9 +1325,9 @@ const ALL_SECTIONS: DocEntry[] = [
 }`}</code>
         </div>
         <div className={styles.warnBox}>
-          Seed samples using <code>npx tsx scripts/seed-samples.ts</code>.
-          This script <em>clears</em> existing samples before re-seeding.
-          For gallery images, use <code>seed-gallery.ts</code> — it
+          Seed samples using <code>npx tsx scripts/seed-samples.ts</code>. This
+          script <em>clears</em> existing samples before re-seeding. For gallery
+          images, use <code>seed-gallery.ts</code> — it
           <em>appends</em> data without wiping.
         </div>
       </>
@@ -1030,16 +1339,26 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-layout",
     phaseId: "components",
     title: "Layout Components",
-    searchText: "layout components header navbar footer main navigation breadcrumb",
+    searchText:
+      "layout components header navbar footer main navigation breadcrumb",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/components/layout/</code>.
         </p>
         <ul className={styles.list}>
-          <li><strong>Header</strong> — sticky gradient nav bar with logo, nav links, and active-page detection</li>
-          <li><strong>Footer</strong> — company details, social links, service columns, legal</li>
-          <li><strong>Providers</strong> — wraps the app with SessionProvider and analytics on mount</li>
+          <li>
+            <strong>Header</strong> — sticky gradient nav bar with logo, nav
+            links, and active-page detection
+          </li>
+          <li>
+            <strong>Footer</strong> — company details, social links, service
+            columns, legal
+          </li>
+          <li>
+            <strong>Providers</strong> — wraps the app with SessionProvider and
+            analytics on mount
+          </li>
         </ul>
       </>
     ),
@@ -1048,16 +1367,27 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-ui",
     phaseId: "components",
     title: "UI Primitives",
-    searchText: "ui components button loader spinner toast modal badge input card",
+    searchText:
+      "ui components button loader spinner toast modal badge input card",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/components/ui/</code>.
         </p>
         <ul className={styles.list}>
-          <li><code>Button</code> — variants: <code>primary | secondary | outline | ghost | danger</code>, sizes: <code>sm | md | lg</code></li>
-          <li><code>Loader / PageLoader</code> — full-page and inline spinners for Suspense boundaries</li>
-          <li><code>Toast</code> — accessible notification overlay (info / success / error / warning)</li>
+          <li>
+            <code>Button</code> — variants:{" "}
+            <code>primary | secondary | outline | ghost | danger</code>, sizes:{" "}
+            <code>sm | md | lg</code>
+          </li>
+          <li>
+            <code>Loader / PageLoader</code> — full-page and inline spinners for
+            Suspense boundaries
+          </li>
+          <li>
+            <code>Toast</code> — accessible notification overlay (info / success
+            / error / warning)
+          </li>
         </ul>
       </>
     ),
@@ -1066,16 +1396,26 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-gallery",
     phaseId: "components",
     title: "Gallery Components",
-    searchText: "gallery components grid masonry card image viewer lightbox category tabs",
+    searchText:
+      "gallery components grid masonry card image viewer lightbox category tabs",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/components/gallery/</code>.
         </p>
         <ul className={styles.list}>
-          <li><code>GalleryGrid</code> — masonry container; fetches images from API, handles loading/empty states</li>
-          <li><code>GalleryCard</code> — individual image tile with like button and analytics tracking</li>
-          <li><code>CategoryTabs</code> — horizontal scrollable filter tabs that push <code>?category=</code> query params</li>
+          <li>
+            <code>GalleryGrid</code> — masonry container; fetches images from
+            API, handles loading/empty states
+          </li>
+          <li>
+            <code>GalleryCard</code> — individual image tile with like button
+            and analytics tracking
+          </li>
+          <li>
+            <code>CategoryTabs</code> — horizontal scrollable filter tabs that
+            push <code>?category=</code> query params
+          </li>
         </ul>
       </>
     ),
@@ -1084,16 +1424,28 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-samples",
     phaseId: "components",
     title: "Samples Components",
-    searchText: "samples grid card modal category tabs enquire whatsapp popup framer motion animation",
+    searchText:
+      "samples grid card modal category tabs enquire whatsapp popup framer motion animation",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/components/samples/</code>.
         </p>
         <ul className={styles.list}>
-          <li><code>SamplesGrid</code> — fetches samples from API, renders category tabs and sample cards; manages modal state with <code>AnimatePresence</code></li>
-          <li>Modal lifecycle: click card → <code>setSelectedSample(sample)</code> → Framer Motion scale-in → click overlay or ✕ → scale-out and null</li>
-          <li>WhatsApp enquiry URL built by <code>generateGalleryInquiryUrl(title, category)</code> in <code>src/lib/whatsapp.ts</code></li>
+          <li>
+            <code>SamplesGrid</code> — fetches samples from API, renders
+            category tabs and sample cards; manages modal state with{" "}
+            <code>AnimatePresence</code>
+          </li>
+          <li>
+            Modal lifecycle: click card → <code>setSelectedSample(sample)</code>{" "}
+            → Framer Motion scale-in → click overlay or ✕ → scale-out and null
+          </li>
+          <li>
+            WhatsApp enquiry URL built by{" "}
+            <code>generateGalleryInquiryUrl(title, category)</code> in{" "}
+            <code>src/lib/whatsapp.ts</code>
+          </li>
         </ul>
       </>
     ),
@@ -1102,18 +1454,32 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-admin",
     phaseId: "components",
     title: "Admin Components",
-    searchText: "admin components sidebar header data table dashboard stats quick actions recent activity",
+    searchText:
+      "admin components sidebar header data table dashboard stats quick actions recent activity",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/components/admin/</code>.
         </p>
         <ul className={styles.list}>
-          <li><code>AdminHeader</code> — top bar with page title and sign-out button</li>
-          <li><code>AdminSidebar</code> — collapsible navigation with route highlighting</li>
-          <li><code>DataTable</code> — reusable sortable table with pagination and bulk selection</li>
-          <li><code>DashboardStats</code> — metric cards with live API data</li>
-          <li><code>RecentActivity</code> — event feed from analytics endpoint</li>
+          <li>
+            <code>AdminHeader</code> — top bar with page title and sign-out
+            button
+          </li>
+          <li>
+            <code>AdminSidebar</code> — collapsible navigation with route
+            highlighting
+          </li>
+          <li>
+            <code>DataTable</code> — reusable sortable table with pagination and
+            bulk selection
+          </li>
+          <li>
+            <code>DashboardStats</code> — metric cards with live API data
+          </li>
+          <li>
+            <code>RecentActivity</code> — event feed from analytics endpoint
+          </li>
         </ul>
       </>
     ),
@@ -1122,16 +1488,27 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "comp-hooks",
     phaseId: "components",
     title: "Custom Hooks",
-    searchText: "hooks useanalytics uselocalStorage usefirstvisit custom react hook",
+    searchText:
+      "hooks useanalytics uselocalStorage usefirstvisit custom react hook",
     content: (
       <>
         <p className={styles.sectionText}>
           Located in <code>src/hooks/</code>.
         </p>
         <ul className={styles.list}>
-          <li><code>useAnalytics()</code> — exposes a <code>track(event, page, meta?)</code> function; debounces duplicate events; calls <code>POST /api/analytics</code></li>
-          <li><code>useLocalStorage(key, defaultValue)</code> — persisted state with SSR safety</li>
-          <li><code>useFirstVisit()</code> — returns <code>true</code> on the user's first ever visit (used for welcome animations)</li>
+          <li>
+            <code>useAnalytics()</code> — exposes a{" "}
+            <code>track(event, page, meta?)</code> function; debounces duplicate
+            events; calls <code>POST /api/analytics</code>
+          </li>
+          <li>
+            <code>useLocalStorage(key, defaultValue)</code> — persisted state
+            with SSR safety
+          </li>
+          <li>
+            <code>useFirstVisit()</code> — returns <code>true</code> on the
+            user's first ever visit (used for welcome animations)
+          </li>
         </ul>
       </>
     ),
@@ -1142,7 +1519,8 @@ const ALL_SECTIONS: DocEntry[] = [
     id: "config-env",
     phaseId: "config",
     title: "Environment Variables",
-    searchText: "environment variables env DATABASE_URL NEXTAUTH_SECRET ADMIN_REGISTRATION_CODE R2 RESEND cloudflare",
+    searchText:
+      "environment variables env DATABASE_URL NEXTAUTH_SECRET ADMIN_REGISTRATION_CODE R2 RESEND cloudflare",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -1185,16 +1563,23 @@ WHATSAPP_NUMBER="2348035070793"`}</code>
     id: "config-nextjs",
     phaseId: "config",
     title: "Next.js Configuration",
-    searchText: "next.config turbopack image domains remote patterns optimization",
+    searchText:
+      "next.config turbopack image domains remote patterns optimization",
     content: (
       <>
         <p className={styles.sectionText}>
           Configuration is in <code>next.config.ts</code>. Key settings:
         </p>
         <ul className={styles.list}>
-          <li>Turbopack enabled for development with <code>--turbopack</code> flag</li>
-          <li>Remote image patterns configured for the R2 public bucket domain</li>
-          <li><code>optimizePackageImports</code> for Framer Motion tree-shaking</li>
+          <li>
+            Turbopack enabled for development with <code>--turbopack</code> flag
+          </li>
+          <li>
+            Remote image patterns configured for the R2 public bucket domain
+          </li>
+          <li>
+            <code>optimizePackageImports</code> for Framer Motion tree-shaking
+          </li>
         </ul>
       </>
     ),
@@ -1203,7 +1588,8 @@ WHATSAPP_NUMBER="2348035070793"`}</code>
     id: "config-deploy",
     phaseId: "config",
     title: "Deployment",
-    searchText: "deploy deployment vercel build commands prisma migrate seed production",
+    searchText:
+      "deploy deployment vercel build commands prisma migrate seed production",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -1262,7 +1648,8 @@ npm start`}</code>
     id: "config-whatsapp",
     phaseId: "config",
     title: "WhatsApp Integration",
-    searchText: "whatsapp integration deep link enquiry message generation util library",
+    searchText:
+      "whatsapp integration deep link enquiry message generation util library",
     content: (
       <>
         <p className={styles.sectionText}>
@@ -1271,9 +1658,18 @@ npm start`}</code>
           <code>wa.me</code> API:
         </p>
         <ul className={styles.list}>
-          <li><code>generateGalleryInquiryUrl(title, category)</code> — for sample/gallery enquiries</li>
-          <li><code>generateProductEnquiryUrl(productName, price?)</code> — for shop product enquiries</li>
-          <li><code>generateContactUrl(name, message)</code> — for contact form WhatsApp channel</li>
+          <li>
+            <code>generateGalleryInquiryUrl(title, category)</code> — for
+            sample/gallery enquiries
+          </li>
+          <li>
+            <code>generateProductEnquiryUrl(productName, price?)</code> — for
+            shop product enquiries
+          </li>
+          <li>
+            <code>generateContactUrl(name, message)</code> — for contact form
+            WhatsApp channel
+          </li>
         </ul>
         <div className={styles.codeBlock}>
           <code>{`// All functions return:
@@ -1296,7 +1692,7 @@ export default function DocumentationPage() {
     return ALL_SECTIONS.filter(
       (s) =>
         s.title.toLowerCase().includes(q) ||
-        s.searchText.toLowerCase().includes(q)
+        s.searchText.toLowerCase().includes(q),
     );
   }, [q]);
 
@@ -1318,18 +1714,24 @@ export default function DocumentationPage() {
       <header className={styles.hero}>
         <span className={styles.heroLabel}>Platform Documentation</span>
         <h1 className={styles.heroTitle}>
-          GRAVILOCH{" "}
-          <span className="text-gold">FINISHING</span> Docs
+          GRAVILOCH <span className="text-gold">FINISHING</span> Docs
         </h1>
         <p className={styles.heroSubtitle}>
-          Comprehensive, multi-phased reference guide covering every page,
-          API, data model, component, and configuration in the platform.
+          Comprehensive, multi-phased reference guide covering every page, API,
+          data model, component, and configuration in the platform.
         </p>
 
         {/* Search */}
         <div className={styles.searchWrapper}>
           <span className={styles.searchIcon}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
@@ -1338,7 +1740,7 @@ export default function DocumentationPage() {
             ref={inputRef}
             className={styles.searchInput}
             type="text"
-            placeholder="Search docs… e.g. &quot;upload&quot;, &quot;samples modal&quot;, &quot;prisma&quot;"
+            placeholder='Search docs… e.g. "upload", "samples modal", "prisma"'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search documentation"
@@ -1346,14 +1748,25 @@ export default function DocumentationPage() {
           {q && (
             <>
               <span className={styles.searchHits}>
-                {filteredSections.length} result{filteredSections.length !== 1 ? "s" : ""}
+                {filteredSections.length} result
+                {filteredSections.length !== 1 ? "s" : ""}
               </span>
               <button
                 className={styles.searchClear}
-                onClick={() => { setQuery(""); inputRef.current?.focus(); }}
+                onClick={() => {
+                  setQuery("");
+                  inputRef.current?.focus();
+                }}
                 aria-label="Clear search"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
@@ -1394,16 +1807,17 @@ export default function DocumentationPage() {
           {visiblePhases.length === 0 ? (
             <div className={styles.noResults}>
               <div className={styles.noResultsEmoji}>🔍</div>
-              <h3 className={styles.noResultsTitle}>No results for &ldquo;{query}&rdquo;</h3>
-              <p>Try a different keyword — e.g. &quot;gallery&quot;, &quot;auth&quot;, &quot;r2&quot;, &quot;whatsapp&quot;.</p>
+              <h3 className={styles.noResultsTitle}>
+                No results for &ldquo;{query}&rdquo;
+              </h3>
+              <p>
+                Try a different keyword — e.g. &quot;gallery&quot;,
+                &quot;auth&quot;, &quot;r2&quot;, &quot;whatsapp&quot;.
+              </p>
             </div>
           ) : (
             visiblePhases.map((phase) => (
-              <section
-                key={phase.id}
-                id={phase.id}
-                className={styles.phase}
-              >
+              <section key={phase.id} id={phase.id} className={styles.phase}>
                 {/* Phase header */}
                 <div className={styles.phaseHeader}>
                   <div

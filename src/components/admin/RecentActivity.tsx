@@ -9,7 +9,9 @@ import styles from "./RecentActivity.module.css";
 async function getRecentActivity() {
   const baseUrl =
     process.env.NEXTAUTH_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
   try {
     const res = await fetch(`${baseUrl}/api/analytics?type=recent`, {
       cache: "no-store",

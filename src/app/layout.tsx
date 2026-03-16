@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import { Header, Footer, WhatsAppButton, InstallPrompt } from "@/components/layout";
+import {
+  Header,
+  Footer,
+  WhatsAppButton,
+  InstallPrompt,
+} from "@/components/layout";
 import { ToastProvider } from "@/components/ui/Toast";
 import "./globals.css";
 
@@ -29,7 +34,7 @@ export const metadata: Metadata = {
     process.env.NEXTAUTH_URL ||
       (process.env.VERCEL_URL
         ? `https://${process.env.VERCEL_URL}`
-        : "https://gravilochfinishings.com")
+        : "https://gravilochfinishings.com"),
   ),
   title: {
     default: "GRAVILOCH FINISHINGS LTD | Nikkolor Italian Decorative Paint",
@@ -95,9 +100,7 @@ export const metadata: Metadata = {
       { url: "/icons/logo.png", sizes: "16x16", type: "image/png" },
     ],
     shortcut: [{ url: "/icons/logo.png" }],
-    apple: [
-      { url: "/icons/logo.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/icons/logo.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
   robots: {
