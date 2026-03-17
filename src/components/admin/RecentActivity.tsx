@@ -97,7 +97,7 @@ export default async function RecentActivity() {
         {activities.length === 0 ? (
           <p className={styles.empty}>No recent activity yet.</p>
         ) : (
-          activities.map((activity: any) => (
+          activities.map((activity: { id: string; type: string; message: string; time: string }) => (
             <div key={activity.id} className={styles.item}>
               <div className={styles.icon}>{getIcon(activity.type)}</div>
               <div className={styles.content}>
