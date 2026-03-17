@@ -115,7 +115,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               src={product.imageUrl}
               alt={product.name}
               fill
-              sizes="(max-width: 480px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+              sizes="(max-width: 320px) 100vw, (max-width: 767px) 50vw, (max-width: 1023px) 33vw, 25vw"
               className={styles.image}
               quality={70}
               loading="lazy"

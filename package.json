@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "seed:products": "node scripts/seed-products.js",
     "postinstall": "prisma generate"
   },
   "dependencies": {
