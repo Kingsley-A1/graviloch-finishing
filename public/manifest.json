@@ -1,7 +1,7 @@
 {
   "name": "GRAVILOCH FINISHINGS LTD",
   "short_name": "Graviloch",
-  "description": "Sole distributors of Nikkolor Italian Decorative Paint - Stucco Veneziano, Marmorino, Travertino, Metallika, Microcemento and more",
+  "description": "Italian decorative painting with the touch of Mastery, Creativty and Excellence",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#141418",
@@ -16,14 +16,14 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["business", "shopping", "lifestyle"],
+  "categories": ["business", "shopping", "lifestyle", "art", "design", "home", "interior", "decor", "painting", "stucco", "marmorino", "travertino", "metallika", "microcemento", "painting", "stucco", "marmorino", "travertino", "metallika", "microcemento, housing, real estate"],
   "screenshots": [
     {
       "src": "/og-image.jpg",
       "sizes": "1200x630",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "GRAVILOCH FINISHINGS LTD - Nikkolor Italian Decorative Paint"
+      "label": "GRAVILOCH FINISHINGS LTD - Nikkolor Italian Decorative Painting with the touch of Mastery, Creativty and Excellence"
     }
   ],
   "related_applications": [],
